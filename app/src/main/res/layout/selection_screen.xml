@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/black" >
+    
+    <HorizontalScrollView
+    android:id="@+id/hsv"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_alignParentTop="true"
+    android:fillViewport="true"
+    android:measureAllChildren="false"
+    android:scrollbars="none" >
+    
+    	<LinearLayout
+        android:id="@+id/innerLay"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+        
+	        <LinearLayout
+	            android:id="@+id/linearData"
+	            android:layout_width="345dp"
+	            android:layout_height="fill_parent"
+	            android:gravity="center"
+	            android:orientation="vertical" >
+	            
+	            <Spinner
+			        android:id="@+id/spinner_continents"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentLeft="true"
+			        android:layout_alignParentRight="true"
+			        android:gravity="center" />
+	
+			    <TextView
+			        android:id="@+id/textView1"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="@string/COUNTRY"
+			        android:textAppearance="?android:attr/textAppearanceMedium"
+			        android:textColor="@android:color/white"
+			        android:textStyle="bold" />
+			    
+			    <Spinner
+			        android:id="@+id/spinner_countries"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentLeft="true"
+			        android:layout_alignParentRight="true"
+			        android:gravity="center" />
+			
+			    <TextView
+			        android:id="@+id/textView2"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="@string/REGION"
+			        android:textAppearance="?android:attr/textAppearanceMedium"
+			        android:textColor="@android:color/white"
+			        android:textStyle="bold" />
+			    
+			    <Spinner
+			        android:id="@+id/spinner_regions"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentLeft="true"
+			        android:layout_alignParentRight="true"
+			        android:layout_below="@+id/spinner_countries"
+			        android:gravity="center" />
+			
+			    <TextView
+			        android:id="@+id/textView3"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:text="@string/LOCATION"
+			        android:textAppearance="?android:attr/textAppearanceMedium"
+			        android:textColor="@android:color/white"
+			        android:textStyle="bold" />
+				
+			    <Spinner
+			        android:id="@+id/spinner_stations"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentLeft="true"
+			        android:layout_alignParentRight="true"
+			        android:layout_below="@+id/spinner_regions"
+			        android:gravity="center" />
+			
+			    <TextView
+			        android:id="@+id/textView4"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:text="XXX"
+			        android:textAppearance="?android:attr/textAppearanceLarge" />
+			
+			    <Button
+			        android:id="@+id/button1"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:text="@string/ACCEPT" />
+		    </LinearLayout>
+		    <LinearLayout
+	            android:id="@+id/linearMap"
+	            android:layout_width="345dp"
+	            android:layout_height="fill_parent"
+	            android:gravity="center"
+	            android:orientation="vertical" >
+		    
+				<fragment
+					android:id="@+id/map"
+					android:name="com.google.android.gms.maps.SupportMapFragment"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent" />
+	    	</LinearLayout>
+    	</LinearLayout>
+    </HorizontalScrollView>
+
+</LinearLayout>
