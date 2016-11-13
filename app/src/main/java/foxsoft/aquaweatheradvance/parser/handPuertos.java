@@ -1,9 +1,12 @@
-package foxsoft.aquaweatheradvance.custom;
+package foxsoft.aquaweatheradvance.parser;
 
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import java.util.ArrayList;
+
+import foxsoft.aquaweatheradvance.custom.clsForecast;
+import foxsoft.aquaweatheradvance.custom.clsStation;
 
 public class handPuertos extends DefaultHandler{
 	

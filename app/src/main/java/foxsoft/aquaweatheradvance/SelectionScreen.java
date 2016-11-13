@@ -26,11 +26,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import custom.DataBaseHelper;
-import custom.clsContinent;
-import custom.clsCountry;
-import custom.clsRegion;
-import custom.clsStation;
+import foxsoft.aquaweatheradvance.custom.DataBaseHelper;
+import foxsoft.aquaweatheradvance.custom.clsContinent;
+import foxsoft.aquaweatheradvance.custom.clsCountry;
+import foxsoft.aquaweatheradvance.custom.clsRegion;
+import foxsoft.aquaweatheradvance.custom.clsStation;
 
 public class SelectionScreen extends Activity {
 

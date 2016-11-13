@@ -19,9 +19,9 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import custom.DataBaseHelper;
-import custom.PuertosSaxParser;
-import custom.clsStation;
+import foxsoft.aquaweatheradvance.custom.DataBaseHelper;
+import foxsoft.aquaweatheradvance.parser.PuertosSaxParser;
+import foxsoft.aquaweatheradvance.custom.clsStation;
 
 public class ObtenerDatos extends Activity {
 	

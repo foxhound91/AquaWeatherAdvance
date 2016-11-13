@@ -1,4 +1,4 @@
-package foxsoft.aquaweatheradvance.custom;
+package foxsoft.aquaweatheradvance.parser;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,6 +7,8 @@ import java.net.URL;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+
+import foxsoft.aquaweatheradvance.custom.clsStation;
 
 public class PuertosSaxParser {
 	
