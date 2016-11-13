@@ -34,7 +34,7 @@ import foxsoft.aquaweatheradvance.custom.clsStation;
 
 public class SelectionScreen extends Activity {
 
-	private final String TAG = "foxlog:SELEC";
+	private final String TAG = this.getClass().toString();
 	
 	private String StationID = null;
 
@@ -88,8 +88,7 @@ public class SelectionScreen extends Activity {
             linearMap.setLayoutParams(new LayoutParams(dpWidth,LayoutParams.MATCH_PARENT)); //FILL_PARENT
             Log.i(TAG, "WIDTH SET AS "+dpWidth);
         } catch (Exception e){
-        	Log.e(TAG, e.toString());
-			e.printStackTrace();
+        	Log.e(TAG, "Exception", e);
         }
         
         //GET DB DATA
@@ -101,8 +100,7 @@ public class SelectionScreen extends Activity {
 			Log.e(TAG, e.getMessage());
 			e.printStackTrace();
 		} catch (Exception e) {
-			Log.e(TAG, e.toString());
-			e.printStackTrace();
+			Log.e(TAG, "Exception", e);
 		}
         
         //ACCEPT BUTTON
@@ -117,8 +115,7 @@ public class SelectionScreen extends Activity {
 	            }
 	        });
         } catch (Exception e) {
-			Log.e(TAG, e.toString());
-			e.printStackTrace();
+			Log.e(TAG, "Exception", e);
 		}
         
         try{
@@ -150,8 +147,7 @@ public class SelectionScreen extends Activity {
 	        adapter_stations.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 			dropdownStations.setAdapter(adapter_stations);
         }catch (Exception e){
-        	Log.e(TAG, e.toString());
-			e.printStackTrace();
+        	Log.e(TAG, "Exception", e);
         }
         
         dropdownContinents.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -175,8 +171,7 @@ public class SelectionScreen extends Activity {
 			        }
 		        	dropdownCountries.setSelection(0);//FIXME
 	        	} catch (Exception e){
-	        		Log.e(TAG, e.toString());
-	    			e.printStackTrace();
+					Log.e(TAG, "Exception", e);
 	        	}
 	        }
 
@@ -206,8 +201,7 @@ public class SelectionScreen extends Activity {
 						}
 			        	dropdownRegions.setSelection(0);//FIXME
 		        	} catch (Exception e){
-		        		Log.e(TAG, e.toString());
-		    			e.printStackTrace();
+		        		Log.e(TAG, "Exception", e);
 		        	}
 		        }
 
@@ -234,8 +228,7 @@ public class SelectionScreen extends Activity {
 			        		}
 						}
 		        	} catch (Exception e) {
-						Log.e(TAG, e.toString());
-						e.printStackTrace();
+						Log.e(TAG, "Exception", e);
 					}
 		        	dropdownStations.setSelection(0);//FIXME
 		        	//StationID = adapter_stations.getItem(0).getId();
@@ -279,8 +272,7 @@ public class SelectionScreen extends Activity {
 	                    .title(selectedStation.getName())
 	                    .position(place));
 	        } catch (Exception e) {
-				Log.e(TAG, e.toString());
-				e.printStackTrace();
+				Log.e(TAG, "Exception", e);
 			}
 		}
 	}
@@ -298,8 +290,7 @@ public class SelectionScreen extends Activity {
 			double longitude = address.getLongitude();
             City = new LatLng(latitude, longitude);
 		} catch (Exception e) {
-			Log.e(TAG, e.toString());
-			e.printStackTrace();
+			Log.e(TAG, "Exception", e);
 		}
 		return City;
 	}

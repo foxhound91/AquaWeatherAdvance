@@ -122,8 +122,8 @@ public class ObtenerDatos extends Activity {
 	private Context mContext;
 	
 	private DataBaseHelper db_helper;
-	
-	private final String TAG = "foxlog:MAIN";
+
+	private final String TAG = this.getClass().toString();
 	
 	private final static int DAY = 90000;
 	private final static int NIGHT = 210000;
@@ -226,8 +226,7 @@ public class ObtenerDatos extends Activity {
         try{
         	adView.loadAd(adRequest);
         } catch (Exception e) {
-			Log.e(TAG, e.toString());
-			e.printStackTrace();
+			Log.e(TAG, "Exception", e);
 		}
         
         //CONFIG BUTTON
@@ -241,8 +240,7 @@ public class ObtenerDatos extends Activity {
 	            }
 	        });
         } catch (Exception e) {
-			Log.e(TAG, e.toString());
-			e.printStackTrace();
+			Log.e(TAG, "Exception", e);
 		}
         
 		dialogoEspera = ProgressDialog.show(this, "Loading", "please wait..");
@@ -258,16 +256,14 @@ public class ObtenerDatos extends Activity {
 			Log.e(TAG, e.getMessage());
 			e.printStackTrace();
 		} catch (Exception e) {
-			Log.e(TAG, e.toString());
-			e.printStackTrace();
+			Log.e(TAG, "Exception", e);
 		}
 		
 		ATCargaDatos = new AsyncTaskCargaDatos(this);
 		try{
 			ATCargaDatos.execute();
         } catch (Exception e) {
-			Log.e(TAG, e.toString());
-			e.printStackTrace();
+			Log.e(TAG, "Exception", e);
 		}
     }
     
@@ -283,8 +279,7 @@ public class ObtenerDatos extends Activity {
             	ATCargaDatos = new AsyncTaskCargaDatos(this);
             	ATCargaDatos.execute();
         	} catch (Exception e) {
-    			Log.e(TAG, e.toString());
-    			e.printStackTrace();
+    			Log.e(TAG, "Exception", e);
     		}
         }
     }
@@ -296,8 +291,7 @@ public class ObtenerDatos extends Activity {
     	  Log.d(TAG, "onStart");
     	  //EasyTracker.getInstance(this).activityStart(this);
       } catch (Exception e) {
-			Log.e(TAG, e.toString());
-			e.printStackTrace();
+			Log.e(TAG, "Exception", e);
 		}
     }
     
@@ -308,8 +302,7 @@ public class ObtenerDatos extends Activity {
     	  Log.d(TAG, "onStop");
     	  //EasyTracker.getInstance(this).activityStop(this);
       } catch (Exception e) {
-			Log.e(TAG, e.toString());
-			e.printStackTrace();
+			Log.e(TAG, "Exception", e);
 	  }
     }
     
@@ -323,8 +316,7 @@ public class ObtenerDatos extends Activity {
 			Log.e(TAG, e.getMessage());
 			e.printStackTrace();
       } catch (Exception e) {
-			Log.e(TAG, e.toString());
-			e.printStackTrace();
+			Log.e(TAG, "Exception", e);
 		}
     }
     
@@ -342,18 +334,15 @@ public class ObtenerDatos extends Activity {
     	@Override
     	protected Void doInBackground(Void... params) {
     		Log.d(TAG, "Trying to load data from feed");
-    		saxparser = new PuertosSaxParser("http://www.windfinder.com/wind-cgi/xmlforecast.pl?CUSTOMER=igoogle&STATIONS="+selectedStation.getId());
     		try {
+                //saxparser = new PuertosSaxParser("http://www.windfinder.com/wind-cgi/xmlforecast.pl?CUSTOMER=igoogle&STATIONS="+selectedStation.getId());
+                saxparser = new PuertosSaxParser("http://frandroid.hostei.com/example.xml");
     			Station = saxparser.parseXML();
     			while (Station == null) {
     				Station = saxparser.parseXML();
     			}
-    		} catch (IOException e) {
-    			Log.e(TAG, e.getMessage());
-    			e.printStackTrace();
     		} catch (Exception e) {
-    			Log.e(TAG, e.toString());
-    			e.printStackTrace();
+    			Log.e(TAG, "Exception", e);
     		}
     		Log.d(TAG, "Data loaded sucessfully from feed for " + Station.getName());
 			selectedStation.setName(Station.getName());
@@ -381,8 +370,7 @@ public class ObtenerDatos extends Activity {
     			decodeWeather(Station, arrayT1Weather);
     			dialogoEspera.dismiss();
     		} catch (Exception e) {
-    			Log.e(TAG, e.toString());
-    			e.printStackTrace();
+    			Log.e(TAG, "Exception", e);
     		}
     	}
     }
