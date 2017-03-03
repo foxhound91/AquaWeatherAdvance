@@ -362,7 +362,7 @@ public class ObtenerDatos extends Activity {
     				Log.d(TAG, "Assigning values for time " + Station.getForecast().get(i).getTime());
     				arrayT1Velocidad.get(i).setText(Station.getForecast().get(i).getWind_speed());
     				arrayT1OlasAltura.get(i).setText(Station.getForecast().get(i).getWave_height());
-    				arrayT1Temperatura.get(i).setText(dfT.format(Station.getForecast().get(i).getAir_temperature())+"�");
+    				arrayT1Temperatura.get(i).setText(dfT.format(Station.getForecast().get(i).getAir_temperature())+"°");
     				arrayT1Pressure.get(i).setText(dfP.format(Station.getForecast().get(i).getAir_pressure())+"hPa");
     				arrayT1Precipitation.get(i).setText(Station.getForecast().get(i).getPrecipitation()+"mm");
     			}
