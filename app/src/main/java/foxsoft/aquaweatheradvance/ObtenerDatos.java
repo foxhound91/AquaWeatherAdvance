@@ -311,7 +311,7 @@ public class ObtenerDatos extends Activity {
       super.onDestroy();
       try{
     	  Log.d(TAG, "onDestroy");
-    	  db_helper.updateLastStation(selectedStation);
+    	  db_helper.updateLastStation(selectedStation); //FIXME selectedStation = null
       } catch (SQLException e) {
 			Log.e(TAG, e.getMessage());
 			e.printStackTrace();
@@ -345,6 +345,7 @@ public class ObtenerDatos extends Activity {
     			Log.e(TAG, "Exception", e);
     		}
     		Log.d(TAG, "Data loaded sucessfully from feed for " + Station.getName());
+            selectedStation = new clsStation();
 			selectedStation.setName(Station.getName());
 			selectedStation.setId(Station.getId());
     		return null;
