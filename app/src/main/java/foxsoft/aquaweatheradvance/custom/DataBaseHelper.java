@@ -46,7 +46,7 @@ public class DataBaseHelper {
     	SQLiteDatabase checkDB = null;
     	try{
     		String myPath = DB_PATH + DB_NAME;
-    		checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.NO_LOCALIZED_COLLATORS);
+    		checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.NO_LOCALIZED_COLLATORS); //FIXME Failed to open database '/data/data/com.softxpress.aquaweather/databases/america.sqlite'.
     	}catch(Exception e){
     		//database does't exist
     	}
@@ -65,7 +65,7 @@ public class DataBaseHelper {
     private void copyDataBase() throws IOException{
  
     	//Open your local db as the input stream
-    	InputStream myInput = myContext.getAssets().open(DB_NAME);
+    	InputStream myInput = myContext.getAssets().open(DB_NAME); //FIXME java.io.FileNotFoundException: america.sqlite
  
     	// Path to the just created empty db
     	String outFileName = DB_PATH + DB_NAME;
