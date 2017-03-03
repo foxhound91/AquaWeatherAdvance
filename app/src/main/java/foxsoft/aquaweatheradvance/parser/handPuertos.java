@@ -65,32 +65,33 @@ public class handPuertos extends DefaultHandler{
 		super.endElement(uri, localName, name);
 		if (this.Forecast != null) {
 			if (localName.equals("air_temperature")) {
-				Forecast.setAir_temperature(sbItem.toString().substring(10));
+				//Forecast.setAir_temperature(sbItem.toString().replaceAll("\\n\\t\\t", "")); //FIXME java.lang.StringIndexOutOfBoundsException: length=7; index=10
+				Forecast.setAir_temperature(sbItem.toString().replaceAll("\\n\\t\\t", ""));
 			} else if (localName.equals("water_temperature")) {
-				Forecast.setWater_temperature(sbItem.toString().substring(10));
+				Forecast.setWater_temperature(sbItem.toString().replaceAll("\\n\\t\\t", ""));
 			} else if (localName.equals("wind_direction")) {
-				Forecast.setWind_direction(sbItem.toString().substring(10));
+				Forecast.setWind_direction(sbItem.toString().replaceAll("\\n\\t\\t", ""));
 			} else if (localName.equals("wind_speed")) {
-				Forecast.setWind_speed(sbItem.toString().substring(10));
+				Forecast.setWind_speed(sbItem.toString().replaceAll("\\n\\t\\t", ""));
 			} else if (localName.equals("wind_gusts")) {
-				Forecast.setWind_gusts(sbItem.toString().substring(10));
+				Forecast.setWind_gusts(sbItem.toString().replaceAll("\\n\\t\\t", ""));
 			} else if (localName.equals("weather")) {
-				Forecast.setWeather(sbItem.toString().substring(10));
+				Forecast.setWeather(sbItem.toString().replaceAll("\\n\\t\\t", ""));
 			} else if (localName.equals("clouds")) {
-				Forecast.setClouds(sbItem.toString().substring(10));
+				Forecast.setClouds(sbItem.toString().replaceAll("\\n\\t\\t", ""));
 			} else if (localName.equals("precipitation")) {
-				Forecast.setPrecipitation(sbItem.toString().substring(10));
+				Forecast.setPrecipitation(sbItem.toString().replaceAll("\\n\\t\\t", ""));
 			} else if (localName.equals("precipitation_type")) {
-				Forecast.setPrecipitation_type(sbItem.toString().substring(10));
+				Forecast.setPrecipitation_type(sbItem.toString().replaceAll("\\n\\t\\t", ""));
 				//Forecast.setPrecipitation_type(attributes.getValue("unit"));
 			} else if (localName.equals("wave_height")) {
-				Forecast.setWave_height(sbItem.toString().substring(10));
+				Forecast.setWave_height(sbItem.toString().replaceAll("\\n\\t\\t", ""));
 			} else if (localName.equals("wave_direction")) {
-				Forecast.setWave_direction(sbItem.toString().substring(10));
+				Forecast.setWave_direction(sbItem.toString().replaceAll("\\n\\t\\t", ""));
 			} else if (localName.equals("wave_period")) {
-				Forecast.setWave_period(sbItem.toString().substring(10));
+				Forecast.setWave_period(sbItem.toString().replaceAll("\\n\\t\\t", ""));
 			} else if (localName.equals("air_pressure")) {
-				Forecast.setAir_pressure(sbItem.toString().substring(10));
+				Forecast.setAir_pressure(sbItem.toString().replaceAll("\\n\\t\\t", ""));
 			} else if (localName.equals("forecast")) {
 				Forecasts.add(Forecast);
 			}
