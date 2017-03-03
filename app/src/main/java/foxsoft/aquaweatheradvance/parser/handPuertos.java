@@ -65,7 +65,7 @@ public class handPuertos extends DefaultHandler{
 		super.endElement(uri, localName, name);
 		if (this.Forecast != null) {
 			if (localName.equals("air_temperature")) {
-				//Forecast.setAir_temperature(sbItem.toString().replaceAll("\\n\\t\\t", "")); //FIXME java.lang.StringIndexOutOfBoundsException: length=7; index=10
+				//Forecast.setAir_temperature(sbItem.toString().replaceAll("\\n\\t\\t", ""));
 				Forecast.setAir_temperature(sbItem.toString().replaceAll("\\n\\t\\t", ""));
 			} else if (localName.equals("water_temperature")) {
 				Forecast.setWater_temperature(sbItem.toString().replaceAll("\\n\\t\\t", ""));

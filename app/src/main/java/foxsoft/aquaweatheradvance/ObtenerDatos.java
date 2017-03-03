@@ -311,7 +311,7 @@ public class ObtenerDatos extends Activity {
       super.onDestroy();
       try{
     	  Log.d(TAG, "onDestroy");
-    	  db_helper.updateLastStation(selectedStation); //FIXME selectedStation = null
+    	  db_helper.updateLastStation(selectedStation);
       } catch (SQLException e) {
 			Log.e(TAG, e.getMessage());
 			e.printStackTrace();
