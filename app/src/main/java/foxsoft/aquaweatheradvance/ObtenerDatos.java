@@ -28,13 +28,13 @@ import foxsoft.aquaweatheradvance.custom.clsStation;
 
 public class ObtenerDatos extends Activity {
 
-	private ArrayList<TextView> arrayT1Velocidad;
-	private ArrayList<ImageView> arrayT1Direccion;
+	private ArrayList<TextView> arrayT1WindSpeed;
+	private ArrayList<ImageView> arrayT1WindDirection;
 
-	private ArrayList<TextView> arrayT1OlasAltura;
-	private ArrayList<ImageView> arrayT1OlasDireccion;
+	private ArrayList<TextView> arrayT1WavesHeight;
+	private ArrayList<ImageView> arrayT1WavesDirection;
 
-	private ArrayList<TextView> arrayT1Temperatura;
+	private ArrayList<TextView> arrayT1Temperature;
 	private ArrayList<TextView> arrayT1Pressure;
 
 	private ArrayList<ImageView> arrayT1Weather;
@@ -44,7 +44,7 @@ public class ObtenerDatos extends Activity {
 
 	private TextView stationName;
 
-	private ProgressDialog dialogoEspera;
+	private ProgressDialog waitingDialogue;
 
 	private AdView adView;
 
@@ -85,42 +85,42 @@ public class ObtenerDatos extends Activity {
       	dfP = new DecimalFormat("#");
 
         //INSERT ALL TEXTVIEWS IN A SINGLE ARRAY
-        arrayT1Velocidad = new ArrayList<>();
-        arrayT1Velocidad.add( (TextView)findViewById(R.id.TV_T1_VEL_00));
-        arrayT1Velocidad.add( (TextView)findViewById(R.id.TV_T1_VEL_03));
-		arrayT1Velocidad.add( (TextView)findViewById(R.id.TV_T1_VEL_06));
-		arrayT1Velocidad.add( (TextView)findViewById(R.id.TV_T1_VEL_09));
-		arrayT1Velocidad.add( (TextView)findViewById(R.id.TV_T1_VEL_12));
-		arrayT1Velocidad.add( (TextView)findViewById(R.id.TV_T1_VEL_15));
-		arrayT1Velocidad.add( (TextView)findViewById(R.id.TV_T1_VEL_18));
-		arrayT1Velocidad.add( (TextView)findViewById(R.id.TV_T1_VEL_21));
-		arrayT1Direccion = new ArrayList<>();
-		arrayT1Direccion.add( (ImageView)findViewById(R.id.TV_T1_DIR_00));
-		arrayT1Direccion.add( (ImageView)findViewById(R.id.TV_T1_DIR_03));
-		arrayT1Direccion.add( (ImageView)findViewById(R.id.TV_T1_DIR_06));
-		arrayT1Direccion.add( (ImageView)findViewById(R.id.TV_T1_DIR_09));
-		arrayT1Direccion.add( (ImageView)findViewById(R.id.TV_T1_DIR_12));
-		arrayT1Direccion.add( (ImageView)findViewById(R.id.TV_T1_DIR_15));
-		arrayT1Direccion.add( (ImageView)findViewById(R.id.TV_T1_DIR_18));
-		arrayT1Direccion.add( (ImageView)findViewById(R.id.TV_T1_DIR_21));
-		arrayT1OlasAltura = new ArrayList<>();
-		arrayT1OlasAltura.add( (TextView)findViewById(R.id.TV_T1_OLAS_ALT_00));
-		arrayT1OlasAltura.add( (TextView)findViewById(R.id.TV_T1_OLAS_ALT_03));
-		arrayT1OlasAltura.add( (TextView)findViewById(R.id.TV_T1_OLAS_ALT_06));
-		arrayT1OlasAltura.add( (TextView)findViewById(R.id.TV_T1_OLAS_ALT_09));
-		arrayT1OlasAltura.add( (TextView)findViewById(R.id.TV_T1_OLAS_ALT_12));
-		arrayT1OlasAltura.add( (TextView)findViewById(R.id.TV_T1_OLAS_ALT_15));
-		arrayT1OlasAltura.add( (TextView)findViewById(R.id.TV_T1_OLAS_ALT_18));
-		arrayT1OlasAltura.add( (TextView)findViewById(R.id.TV_T1_OLAS_ALT_21));
-		arrayT1OlasDireccion = new ArrayList<>();
-		arrayT1OlasDireccion.add( (ImageView)findViewById(R.id.TV_T1_OLAS_DIR_00));
-		arrayT1OlasDireccion.add( (ImageView)findViewById(R.id.TV_T1_OLAS_DIR_03));
-		arrayT1OlasDireccion.add( (ImageView)findViewById(R.id.TV_T1_OLAS_DIR_06));
-		arrayT1OlasDireccion.add( (ImageView)findViewById(R.id.TV_T1_OLAS_DIR_09));
-		arrayT1OlasDireccion.add( (ImageView)findViewById(R.id.TV_T1_OLAS_DIR_12));
-		arrayT1OlasDireccion.add( (ImageView)findViewById(R.id.TV_T1_OLAS_DIR_15));
-		arrayT1OlasDireccion.add( (ImageView)findViewById(R.id.TV_T1_OLAS_DIR_18));
-		arrayT1OlasDireccion.add( (ImageView)findViewById(R.id.TV_T1_OLAS_DIR_21));
+        arrayT1WindSpeed = new ArrayList<>();
+        arrayT1WindSpeed.add( (TextView)findViewById(R.id.TV_T1_VEL_00));
+        arrayT1WindSpeed.add( (TextView)findViewById(R.id.TV_T1_VEL_03));
+		arrayT1WindSpeed.add( (TextView)findViewById(R.id.TV_T1_VEL_06));
+		arrayT1WindSpeed.add( (TextView)findViewById(R.id.TV_T1_VEL_09));
+		arrayT1WindSpeed.add( (TextView)findViewById(R.id.TV_T1_VEL_12));
+		arrayT1WindSpeed.add( (TextView)findViewById(R.id.TV_T1_VEL_15));
+		arrayT1WindSpeed.add( (TextView)findViewById(R.id.TV_T1_VEL_18));
+		arrayT1WindSpeed.add( (TextView)findViewById(R.id.TV_T1_VEL_21));
+		arrayT1WindDirection = new ArrayList<>();
+		arrayT1WindDirection.add( (ImageView)findViewById(R.id.TV_T1_DIR_00));
+		arrayT1WindDirection.add( (ImageView)findViewById(R.id.TV_T1_DIR_03));
+		arrayT1WindDirection.add( (ImageView)findViewById(R.id.TV_T1_DIR_06));
+		arrayT1WindDirection.add( (ImageView)findViewById(R.id.TV_T1_DIR_09));
+		arrayT1WindDirection.add( (ImageView)findViewById(R.id.TV_T1_DIR_12));
+		arrayT1WindDirection.add( (ImageView)findViewById(R.id.TV_T1_DIR_15));
+		arrayT1WindDirection.add( (ImageView)findViewById(R.id.TV_T1_DIR_18));
+		arrayT1WindDirection.add( (ImageView)findViewById(R.id.TV_T1_DIR_21));
+		arrayT1WavesHeight = new ArrayList<>();
+		arrayT1WavesHeight.add( (TextView)findViewById(R.id.TV_T1_OLAS_ALT_00));
+		arrayT1WavesHeight.add( (TextView)findViewById(R.id.TV_T1_OLAS_ALT_03));
+		arrayT1WavesHeight.add( (TextView)findViewById(R.id.TV_T1_OLAS_ALT_06));
+		arrayT1WavesHeight.add( (TextView)findViewById(R.id.TV_T1_OLAS_ALT_09));
+		arrayT1WavesHeight.add( (TextView)findViewById(R.id.TV_T1_OLAS_ALT_12));
+		arrayT1WavesHeight.add( (TextView)findViewById(R.id.TV_T1_OLAS_ALT_15));
+		arrayT1WavesHeight.add( (TextView)findViewById(R.id.TV_T1_OLAS_ALT_18));
+		arrayT1WavesHeight.add( (TextView)findViewById(R.id.TV_T1_OLAS_ALT_21));
+		arrayT1WavesDirection = new ArrayList<>();
+		arrayT1WavesDirection.add( (ImageView)findViewById(R.id.TV_T1_OLAS_DIR_00));
+		arrayT1WavesDirection.add( (ImageView)findViewById(R.id.TV_T1_OLAS_DIR_03));
+		arrayT1WavesDirection.add( (ImageView)findViewById(R.id.TV_T1_OLAS_DIR_06));
+		arrayT1WavesDirection.add( (ImageView)findViewById(R.id.TV_T1_OLAS_DIR_09));
+		arrayT1WavesDirection.add( (ImageView)findViewById(R.id.TV_T1_OLAS_DIR_12));
+		arrayT1WavesDirection.add( (ImageView)findViewById(R.id.TV_T1_OLAS_DIR_15));
+		arrayT1WavesDirection.add( (ImageView)findViewById(R.id.TV_T1_OLAS_DIR_18));
+		arrayT1WavesDirection.add( (ImageView)findViewById(R.id.TV_T1_OLAS_DIR_21));
 		arrayT1Precipitation = new ArrayList<>();
 		arrayT1Precipitation.add( (TextView)findViewById(R.id.TV_T1_RAC_00));
 		arrayT1Precipitation.add( (TextView)findViewById(R.id.TV_T1_RAC_03));
@@ -130,15 +130,15 @@ public class ObtenerDatos extends Activity {
 		arrayT1Precipitation.add( (TextView)findViewById(R.id.TV_T1_RAC_15));
 		arrayT1Precipitation.add( (TextView)findViewById(R.id.TV_T1_RAC_18));
 		arrayT1Precipitation.add( (TextView)findViewById(R.id.TV_T1_RAC_21));
-		arrayT1Temperatura = new ArrayList<>();
-		arrayT1Temperatura.add( (TextView)findViewById(R.id.TV_T1_TEMP_00));
-		arrayT1Temperatura.add( (TextView)findViewById(R.id.TV_T1_TEMP_03));
-		arrayT1Temperatura.add( (TextView)findViewById(R.id.TV_T1_TEMP_06));
-		arrayT1Temperatura.add( (TextView)findViewById(R.id.TV_T1_TEMP_09));
-		arrayT1Temperatura.add( (TextView)findViewById(R.id.TV_T1_TEMP_12));
-		arrayT1Temperatura.add( (TextView)findViewById(R.id.TV_T1_TEMP_15));
-		arrayT1Temperatura.add( (TextView)findViewById(R.id.TV_T1_TEMP_18));
-		arrayT1Temperatura.add( (TextView)findViewById(R.id.TV_T1_TEMP_21));
+		arrayT1Temperature = new ArrayList<>();
+		arrayT1Temperature.add( (TextView)findViewById(R.id.TV_T1_TEMP_00));
+		arrayT1Temperature.add( (TextView)findViewById(R.id.TV_T1_TEMP_03));
+		arrayT1Temperature.add( (TextView)findViewById(R.id.TV_T1_TEMP_06));
+		arrayT1Temperature.add( (TextView)findViewById(R.id.TV_T1_TEMP_09));
+		arrayT1Temperature.add( (TextView)findViewById(R.id.TV_T1_TEMP_12));
+		arrayT1Temperature.add( (TextView)findViewById(R.id.TV_T1_TEMP_15));
+		arrayT1Temperature.add( (TextView)findViewById(R.id.TV_T1_TEMP_18));
+		arrayT1Temperature.add( (TextView)findViewById(R.id.TV_T1_TEMP_21));
 		arrayT1Weather = new ArrayList<>();
 		arrayT1Weather.add( (ImageView)findViewById(R.id.TV_T1_WEA_00));
 		arrayT1Weather.add( (ImageView)findViewById(R.id.TV_T1_WEA_03));
@@ -186,9 +186,9 @@ public class ObtenerDatos extends Activity {
 			Log.e(TAG, "Exception", e);
 		}
 
-		dialogoEspera = ProgressDialog.show(this, "Loading", "please wait..");
+		waitingDialogue = ProgressDialog.show(this, "Loading", "please wait..");
 
-		//GET LAST STATION SETTED BY THE USER
+		//GET LAST STATION SET BY THE USER
 		db_helper = new DataBaseHelper(this);
 		try {
 			db_helper.openDataBase();
@@ -214,7 +214,7 @@ public class ObtenerDatos extends Activity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == B_REQUEST && resultCode == Activity.RESULT_OK) {
         	try{
-        		dialogoEspera = ProgressDialog.show(this, "Loading", "please wait..");
+        		waitingDialogue = ProgressDialog.show(this, "Loading", "please wait..");
         		Bundle extras = data.getExtras();
             	String datas= extras.getString("EXTRA_ID");
             	Log.d(TAG, "Value got from onActivityResult, StationID = "+datas);
@@ -293,16 +293,16 @@ public class ObtenerDatos extends Activity {
     			stationName.setText(Station.getName());
     			for(int i=0; i<8; i++){
     				Log.d(TAG, "Assigning values for time " + Station.getForecast().get(i).getTime());
-    				arrayT1Velocidad.get(i).setText(Station.getForecast().get(i).getWind_speed());
-    				arrayT1OlasAltura.get(i).setText(Station.getForecast().get(i).getWave_height());
-    				arrayT1Temperatura.get(i).setText(dfT.format(Station.getForecast().get(i).getAir_temperature())+"°");
+    				arrayT1WindSpeed.get(i).setText(Station.getForecast().get(i).getWind_speed());
+    				arrayT1WavesHeight.get(i).setText(Station.getForecast().get(i).getWave_height());
+    				arrayT1Temperature.get(i).setText(dfT.format(Station.getForecast().get(i).getAir_temperature())+"°");
     				arrayT1Pressure.get(i).setText(dfP.format(Station.getForecast().get(i).getAir_pressure())+"hPa");
     				arrayT1Precipitation.get(i).setText(Station.getForecast().get(i).getPrecipitation()+"mm");
     			}
-    			decodeWindDirection(Station, arrayT1Direccion);
-    			decodeWaveDirection(Station, arrayT1OlasDireccion);
+    			decodeWindDirection(Station, arrayT1WindDirection);
+    			decodeWaveDirection(Station, arrayT1WavesDirection);
     			decodeWeather(Station, arrayT1Weather);
-    			dialogoEspera.dismiss();
+    			waitingDialogue.dismiss();
     		} catch (Exception e) {
     			Log.e(TAG, "Exception", e);
     		}

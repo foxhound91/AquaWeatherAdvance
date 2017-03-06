@@ -3,7 +3,6 @@ package foxsoft.aquaweatheradvance.custom;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
-import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -38,10 +37,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
  
     /**
-     * Copies your database from your local assets-folder to the just created empty database in the
-     * system folder, from where it can be accessed and handled.
-     * This is done by transfering bytestream.
-     * @throws IOException 
+     * Copies the DB from local assets to the internal storage where it can be accessed and handled
      * */
     private void copyDataBase(File dbFile) {
         try{
@@ -144,7 +140,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     	return countries;
     }
     
-    public ArrayList<clsContinent> getContients() throws Exception{
+    public ArrayList<clsContinent> getContinents() throws Exception{
     	ArrayList<clsContinent> continents = new ArrayList<>();
     	clsContinent continent;
     	String selectQuery = "SELECT CONTINENT_ID, ID, NAME FROM CONTINENTS";

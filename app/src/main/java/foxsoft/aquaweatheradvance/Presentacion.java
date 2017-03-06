@@ -40,8 +40,8 @@ public class Presentacion extends Activity {
         	progressBar.setProgress(0);
             for (int i = 0; i < 100; i++) {
                 try {
-                    Thread.sleep(10);
-                    progressBar.setProgress(i + 1);
+                    Thread.sleep(1);
+                    progressBar.setProgress(i + 10);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
