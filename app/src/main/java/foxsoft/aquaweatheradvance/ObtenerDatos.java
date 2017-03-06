@@ -18,6 +18,7 @@ import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
+import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -85,7 +86,7 @@ public class ObtenerDatos extends Activity {
 
         //INSERT ALL TEXTVIEWS IN A SINGLE ARRAY
         arrayT1Velocidad = new ArrayList<>();
-        arrayT1Velocidad.add((TextView)findViewById(R.id.TV_T1_VEL_00));
+        arrayT1Velocidad.add( (TextView)findViewById(R.id.TV_T1_VEL_00));
         arrayT1Velocidad.add( (TextView)findViewById(R.id.TV_T1_VEL_03));
 		arrayT1Velocidad.add( (TextView)findViewById(R.id.TV_T1_VEL_06));
 		arrayT1Velocidad.add( (TextView)findViewById(R.id.TV_T1_VEL_09));
@@ -197,8 +198,10 @@ public class ObtenerDatos extends Activity {
 		} catch (SQLException e) {
 			Log.e(TAG, e.getMessage());
 			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			Log.w(TAG, "DB file not found");
 		} catch (Exception e) {
-			Log.e(TAG, "Exception", e);
+			Log.e(TAG, "Generic Exception", e);
 		}
 
 		ATCargaDatos = new AsyncTaskCargaDatos(this);
@@ -248,7 +251,7 @@ public class ObtenerDatos extends Activity {
 			Log.e(TAG, e.getMessage());
 			e.printStackTrace();
       } catch (Exception e) {
-			Log.e(TAG, "Exception", e);
+			Log.e(TAG, e.getMessage());
 		}
     }
     

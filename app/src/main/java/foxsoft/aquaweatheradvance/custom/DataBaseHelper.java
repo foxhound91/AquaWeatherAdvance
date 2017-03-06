@@ -3,7 +3,9 @@ package foxsoft.aquaweatheradvance.custom;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -12,10 +14,13 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 
 public class DataBaseHelper {
+
+    private final String TAG = this.getClass().toString();
+
 	//The Android's default system path of your application database.
     private static final String DB_PATH = "/data/data/com.softxpress.aquaweather/databases/";
  
-    private static final String DB_NAME = "america.sqlite";
+    private static final String DB_NAME = "ar_ur.sqlite";
  
     private SQLiteDatabase myDataBase; 
  
@@ -47,13 +52,15 @@ public class DataBaseHelper {
     	try{
     		String myPath = DB_PATH + DB_NAME;
     		checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.NO_LOCALIZED_COLLATORS); //FIXME Failed to open database '/data/data/com.softxpress.aquaweather/databases/america.sqlite'.
-    	}catch(Exception e){
-    		//database does't exist
-    	}
+    	}catch(SQLiteCantOpenDatabaseException e){
+            Log.w(TAG, "DB doesn't exist");
+        }
     	if(checkDB != null){
     		checkDB.close();
-    	}
-    	return checkDB != null ? true : false;
+            return true;
+    	} else {
+            return false;
+        }
     }
  
     /**
@@ -65,7 +72,7 @@ public class DataBaseHelper {
     private void copyDataBase() throws IOException{
  
     	//Open your local db as the input stream
-    	InputStream myInput = myContext.getAssets().open(DB_NAME); //FIXME java.io.FileNotFoundException: america.sqlite
+    	InputStream myInput = myContext.getAssets().open(DB_NAME);
  
     	// Path to the just created empty db
     	String outFileName = DB_PATH + DB_NAME;
