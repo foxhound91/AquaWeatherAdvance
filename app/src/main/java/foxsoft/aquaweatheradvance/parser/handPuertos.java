@@ -64,36 +64,51 @@ public class handPuertos extends DefaultHandler{
 	public void endElement(String uri, String localName, String name) throws SAXException {
 		super.endElement(uri, localName, name);
 		if (this.Forecast != null) {
-			if (localName.equals("air_temperature")) {
-				//Forecast.setAir_temperature(sbItem.toString().replaceAll("\\n\\t\\t", ""));
-				Forecast.setAir_temperature(sbItem.toString().replaceAll("\\n\\t\\t", ""));
-			} else if (localName.equals("water_temperature")) {
-				Forecast.setWater_temperature(sbItem.toString().replaceAll("\\n\\t\\t", ""));
-			} else if (localName.equals("wind_direction")) {
-				Forecast.setWind_direction(sbItem.toString().replaceAll("\\n\\t\\t", ""));
-			} else if (localName.equals("wind_speed")) {
-				Forecast.setWind_speed(sbItem.toString().replaceAll("\\n\\t\\t", ""));
-			} else if (localName.equals("wind_gusts")) {
-				Forecast.setWind_gusts(sbItem.toString().replaceAll("\\n\\t\\t", ""));
-			} else if (localName.equals("weather")) {
-				Forecast.setWeather(sbItem.toString().replaceAll("\\n\\t\\t", ""));
-			} else if (localName.equals("clouds")) {
-				Forecast.setClouds(sbItem.toString().replaceAll("\\n\\t\\t", ""));
-			} else if (localName.equals("precipitation")) {
-				Forecast.setPrecipitation(sbItem.toString().replaceAll("\\n\\t\\t", ""));
-			} else if (localName.equals("precipitation_type")) {
-				Forecast.setPrecipitation_type(sbItem.toString().replaceAll("\\n\\t\\t", ""));
-				//Forecast.setPrecipitation_type(attributes.getValue("unit"));
-			} else if (localName.equals("wave_height")) {
-				Forecast.setWave_height(sbItem.toString().replaceAll("\\n\\t\\t", ""));
-			} else if (localName.equals("wave_direction")) {
-				Forecast.setWave_direction(sbItem.toString().replaceAll("\\n\\t\\t", ""));
-			} else if (localName.equals("wave_period")) {
-				Forecast.setWave_period(sbItem.toString().replaceAll("\\n\\t\\t", ""));
-			} else if (localName.equals("air_pressure")) {
-				Forecast.setAir_pressure(sbItem.toString().replaceAll("\\n\\t\\t", ""));
-			} else if (localName.equals("forecast")) {
-				Forecasts.add(Forecast);
+			switch (localName) {
+				case "air_temperature":
+					//Forecast.setAir_temperature(sbItem.toString().replaceAll("\\n\\t\\t", ""));
+					Forecast.setAir_temperature(sbItem.toString().replaceAll("\\n\\t\\t", ""));
+					break;
+				case "water_temperature":
+					Forecast.setWater_temperature(sbItem.toString().replaceAll("\\n\\t\\t", ""));
+					break;
+				case "wind_direction":
+					Forecast.setWind_direction(sbItem.toString().replaceAll("\\n\\t\\t", ""));
+					break;
+				case "wind_speed":
+					Forecast.setWind_speed(sbItem.toString().replaceAll("\\n\\t\\t", ""));
+					break;
+				case "wind_gusts":
+					Forecast.setWind_gusts(sbItem.toString().replaceAll("\\n\\t\\t", ""));
+					break;
+				case "weather":
+					Forecast.setWeather(sbItem.toString().replaceAll("\\n\\t\\t", ""));
+					break;
+				case "clouds":
+					Forecast.setClouds(sbItem.toString().replaceAll("\\n\\t\\t", ""));
+					break;
+				case "precipitation":
+					Forecast.setPrecipitation(sbItem.toString().replaceAll("\\n\\t\\t", ""));
+					break;
+				case "precipitation_type":
+					Forecast.setPrecipitation_type(sbItem.toString().replaceAll("\\n\\t\\t", ""));
+					//Forecast.setPrecipitation_type(attributes.getValue("unit"));
+					break;
+				case "wave_height":
+					Forecast.setWave_height(sbItem.toString().replaceAll("\\n\\t\\t", ""));
+					break;
+				case "wave_direction":
+					Forecast.setWave_direction(sbItem.toString().replaceAll("\\n\\t\\t", ""));
+					break;
+				case "wave_period":
+					Forecast.setWave_period(sbItem.toString().replaceAll("\\n\\t\\t", ""));
+					break;
+				case "air_pressure":
+					Forecast.setAir_pressure(sbItem.toString().replaceAll("\\n\\t\\t", ""));
+					break;
+				case "forecast":
+					Forecasts.add(Forecast);
+					break;
 			}
 			sbItem.setLength(0);
 		}
