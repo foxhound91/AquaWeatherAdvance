@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class DataBaseHelper {
 	//The Android's default system path of your application database.
-    private static String DB_PATH = "/data/data/com.softxpress.aquaweather/databases/";
+    private static final String DB_PATH = "/data/data/com.softxpress.aquaweather/databases/";
  
     private static final String DB_NAME = "america.sqlite";
  
