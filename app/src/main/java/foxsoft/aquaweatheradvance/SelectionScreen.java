@@ -78,8 +78,8 @@ public class SelectionScreen extends Activity {
 			LinearLayout linearData = (LinearLayout) findViewById(R.id.linearData);
             linearData.setLayoutParams(new LayoutParams(dpWidth,LayoutParams.MATCH_PARENT)); //FILL_PARENT
 
-			LinearLayout linearMap = (LinearLayout) findViewById(R.id.linearMap);
-            linearMap.setLayoutParams(new LayoutParams(dpWidth,LayoutParams.MATCH_PARENT)); //FILL_PARENT
+			//LinearLayout linearMap = (LinearLayout) findViewById(R.id.linearMap);
+            //linearMap.setLayoutParams(new LayoutParams(dpWidth,LayoutParams.MATCH_PARENT)); //FILL_PARENT
             Log.i(TAG, "WIDTH SET AS "+dpWidth);
         } catch (Exception e){
         	Log.e(TAG, "Exception", e);
@@ -141,7 +141,7 @@ public class SelectionScreen extends Activity {
 	        adapter_stations.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 			dropdownStations.setAdapter(adapter_stations);
         }catch (Exception e){
-        	Log.e(TAG, "Exception", e);
+        	Log.e(TAG, e.getMessage());
         }
         
         dropdownContinents.setOnItemSelectedListener(new OnItemSelectedListener() {

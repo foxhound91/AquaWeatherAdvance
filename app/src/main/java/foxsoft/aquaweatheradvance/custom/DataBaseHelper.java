@@ -160,8 +160,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         		} while (cursor.moveToNext());
         	}
     	}catch(Exception e){
-    		throw new Exception("SQL ERROR getContients");
-    		//throw e;
+    		Log.e(TAG, "Error at getContinents", e);
     	}
     	return continents;
     }
