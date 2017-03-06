@@ -121,7 +121,7 @@ public class SelectionScreen extends Activity {
         try{
         	//CONFIG SPINNER (DROP-DOWN OF CONTINENTS)
         	dropdownContinents = (Spinner) findViewById(R.id.spinner_continents);
-	        adapter_continents = new ArrayAdapter<clsContinent>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
+	        adapter_continents = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
 	        adapter_continents.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	        dropdownContinents.setAdapter(adapter_continents);
 	        for(int x=0;x<db_continents.size();x++){
@@ -130,20 +130,20 @@ public class SelectionScreen extends Activity {
 	        
         	//CONFIG SPINNER (DROP-DOWN OF COUNTRIES)
 	        dropdownCountries = (Spinner) findViewById(R.id.spinner_countries);
-	        adapter_countries = new ArrayAdapter<clsCountry>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
+	        adapter_countries = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
 	        //adapter_countries.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	        adapter_countries.setDropDownViewResource(android.R.layout.simple_list_item_1);
 	        dropdownCountries.setAdapter(adapter_countries);
 	        	        
         	//CONFIG SPINNER (DROP-DOWN OF REGIONS)
 	        dropdownRegions = (Spinner) findViewById(R.id.spinner_regions);
-	        adapter_regions = new ArrayAdapter<clsRegion>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
+	        adapter_regions = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
 	        adapter_regions.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	        dropdownRegions.setAdapter(adapter_regions);
 	        
 			//CONFIG SPINNER (DROP-DOWN OF STATIONS)
 	        dropdownStations = (Spinner) findViewById(R.id.spinner_stations);
-	        adapter_stations = new ArrayAdapter<clsStation>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
+	        adapter_stations = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
 	        adapter_stations.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 			dropdownStations.setAdapter(adapter_stations);
         }catch (Exception e){

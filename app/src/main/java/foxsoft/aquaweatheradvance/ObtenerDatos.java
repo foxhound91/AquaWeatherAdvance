@@ -152,7 +152,7 @@ public class ObtenerDatos extends Activity {
       	dfP = new DecimalFormat("#");
 
         //INSERT ALL TEXTVIEWS IN A SINGLE ARRAY
-        arrayT1Velocidad = new ArrayList<TextView>();
+        arrayT1Velocidad = new ArrayList<>();
         arrayT1Velocidad.add(textT1Velocidad00 = (TextView)findViewById(R.id.TV_T1_VEL_00));
         arrayT1Velocidad.add(textT1Velocidad03 = (TextView)findViewById(R.id.TV_T1_VEL_03));
 		arrayT1Velocidad.add(textT1Velocidad06 = (TextView)findViewById(R.id.TV_T1_VEL_06));
@@ -161,7 +161,7 @@ public class ObtenerDatos extends Activity {
 		arrayT1Velocidad.add(textT1Velocidad15 = (TextView)findViewById(R.id.TV_T1_VEL_15));
 		arrayT1Velocidad.add(textT1Velocidad18 = (TextView)findViewById(R.id.TV_T1_VEL_18));
 		arrayT1Velocidad.add(textT1Velocidad21 = (TextView)findViewById(R.id.TV_T1_VEL_21));
-		arrayT1Direccion = new ArrayList<ImageView>();
+		arrayT1Direccion = new ArrayList<>();
 		arrayT1Direccion.add(textT1Direccion00 = (ImageView)findViewById(R.id.TV_T1_DIR_00));
 		arrayT1Direccion.add(textT1Direccion03 = (ImageView)findViewById(R.id.TV_T1_DIR_03));
 		arrayT1Direccion.add(textT1Direccion06 = (ImageView)findViewById(R.id.TV_T1_DIR_06));
@@ -170,7 +170,7 @@ public class ObtenerDatos extends Activity {
 		arrayT1Direccion.add(textT1Direccion15 = (ImageView)findViewById(R.id.TV_T1_DIR_15));
 		arrayT1Direccion.add(textT1Direccion18 = (ImageView)findViewById(R.id.TV_T1_DIR_18));
 		arrayT1Direccion.add(textT1Direccion21 = (ImageView)findViewById(R.id.TV_T1_DIR_21));
-		arrayT1OlasAltura = new ArrayList<TextView>();
+		arrayT1OlasAltura = new ArrayList<>();
 		arrayT1OlasAltura.add(textT1OlasAltura00 = (TextView)findViewById(R.id.TV_T1_OLAS_ALT_00));
 		arrayT1OlasAltura.add(textT1OlasAltura03 = (TextView)findViewById(R.id.TV_T1_OLAS_ALT_03));
 		arrayT1OlasAltura.add(textT1OlasAltura06 = (TextView)findViewById(R.id.TV_T1_OLAS_ALT_06));
@@ -179,7 +179,7 @@ public class ObtenerDatos extends Activity {
 		arrayT1OlasAltura.add(textT1OlasAltura15 = (TextView)findViewById(R.id.TV_T1_OLAS_ALT_15));
 		arrayT1OlasAltura.add(textT1OlasAltura18 = (TextView)findViewById(R.id.TV_T1_OLAS_ALT_18));
 		arrayT1OlasAltura.add(textT1OlasAltura21 = (TextView)findViewById(R.id.TV_T1_OLAS_ALT_21));
-		arrayT1OlasDireccion = new ArrayList<ImageView>();
+		arrayT1OlasDireccion = new ArrayList<>();
 		arrayT1OlasDireccion.add(textT1OlasDireccion00 = (ImageView)findViewById(R.id.TV_T1_OLAS_DIR_00));
 		arrayT1OlasDireccion.add(textT1OlasDireccion03 = (ImageView)findViewById(R.id.TV_T1_OLAS_DIR_03));
 		arrayT1OlasDireccion.add(textT1OlasDireccion06 = (ImageView)findViewById(R.id.TV_T1_OLAS_DIR_06));
@@ -188,7 +188,7 @@ public class ObtenerDatos extends Activity {
 		arrayT1OlasDireccion.add(textT1OlasDireccion15 = (ImageView)findViewById(R.id.TV_T1_OLAS_DIR_15));
 		arrayT1OlasDireccion.add(textT1OlasDireccion18 = (ImageView)findViewById(R.id.TV_T1_OLAS_DIR_18));
 		arrayT1OlasDireccion.add(textT1OlasDireccion21 = (ImageView)findViewById(R.id.TV_T1_OLAS_DIR_21));
-		arrayT1Precipitation = new ArrayList<TextView>();
+		arrayT1Precipitation = new ArrayList<>();
 		arrayT1Precipitation.add(textT1Precipitation00 = (TextView)findViewById(R.id.TV_T1_RAC_00));
 		arrayT1Precipitation.add(textT1Precipitation03 = (TextView)findViewById(R.id.TV_T1_RAC_03));
 		arrayT1Precipitation.add(textT1Precipitation06 = (TextView)findViewById(R.id.TV_T1_RAC_06));
@@ -197,7 +197,7 @@ public class ObtenerDatos extends Activity {
 		arrayT1Precipitation.add(textT1Precipitation15 = (TextView)findViewById(R.id.TV_T1_RAC_15));
 		arrayT1Precipitation.add(textT1Precipitation18 = (TextView)findViewById(R.id.TV_T1_RAC_18));
 		arrayT1Precipitation.add(textT1Precipitation21 = (TextView)findViewById(R.id.TV_T1_RAC_21));
-		arrayT1Temperatura = new ArrayList<TextView>();
+		arrayT1Temperatura = new ArrayList<>();
 		arrayT1Temperatura.add(textT1Temperatura00 = (TextView)findViewById(R.id.TV_T1_TEMP_00));
 		arrayT1Temperatura.add(textT1Temperatura03 = (TextView)findViewById(R.id.TV_T1_TEMP_03));
 		arrayT1Temperatura.add(textT1Temperatura06 = (TextView)findViewById(R.id.TV_T1_TEMP_06));
@@ -206,7 +206,7 @@ public class ObtenerDatos extends Activity {
 		arrayT1Temperatura.add(textT1Temperatura15 = (TextView)findViewById(R.id.TV_T1_TEMP_15));
 		arrayT1Temperatura.add(textT1Temperatura18 = (TextView)findViewById(R.id.TV_T1_TEMP_18));
 		arrayT1Temperatura.add(textT1Temperatura21 = (TextView)findViewById(R.id.TV_T1_TEMP_21));
-		arrayT1Weather = new ArrayList<ImageView>();
+		arrayT1Weather = new ArrayList<>();
 		arrayT1Weather.add(textT1Weather00 = (ImageView)findViewById(R.id.TV_T1_WEA_00));
 		arrayT1Weather.add(textT1Weather03 = (ImageView)findViewById(R.id.TV_T1_WEA_03));
 		arrayT1Weather.add(textT1Weather06 = (ImageView)findViewById(R.id.TV_T1_WEA_06));
@@ -215,7 +215,7 @@ public class ObtenerDatos extends Activity {
 		arrayT1Weather.add(textT1Weather15 = (ImageView)findViewById(R.id.TV_T1_WEA_15));
 		arrayT1Weather.add(textT1Weather18 = (ImageView)findViewById(R.id.TV_T1_WEA_18));
 		arrayT1Weather.add(textT1Weather21 = (ImageView)findViewById(R.id.TV_T1_WEA_21));
-		arrayT1Pressure = new ArrayList<TextView>();
+		arrayT1Pressure = new ArrayList<>();
 		arrayT1Pressure.add(textT1Pressure00 = (TextView)findViewById(R.id.TV_T1_PRE_00));
 		arrayT1Pressure.add(textT1Pressure03 = (TextView)findViewById(R.id.TV_T1_PRE_03));
 		arrayT1Pressure.add(textT1Pressure06 = (TextView)findViewById(R.id.TV_T1_PRE_06));

@@ -105,7 +105,7 @@ public class DataBaseHelper {
     }
     
     public ArrayList<clsStation> getStations(String regionID) throws Exception{
-    	ArrayList<clsStation> stations = new ArrayList<clsStation>();
+    	ArrayList<clsStation> stations = new ArrayList<>();
     	clsStation station;
     	String selectQuery = "SELECT ID, NAME, REGION_ID FROM STATIONS WHERE REGION_ID = '"+regionID+"'";
     	try{
@@ -127,7 +127,7 @@ public class DataBaseHelper {
     }
     
     public ArrayList<clsRegion> getRegions(String countryID) throws Exception{
-    	ArrayList<clsRegion> regions = new ArrayList<clsRegion>();
+    	ArrayList<clsRegion> regions = new ArrayList<>();
     	clsRegion region;
     	String selectQuery = "SELECT REGION_ID, ID, NAME, COUNTRY_ID FROM REGIONS WHERE COUNTRY_ID = '"+countryID+"'";
     	try{
@@ -150,7 +150,7 @@ public class DataBaseHelper {
     }
     
     public ArrayList<clsCountry> getCountries(String continentID) throws Exception{
-    	ArrayList<clsCountry> countries = new ArrayList<clsCountry>();
+    	ArrayList<clsCountry> countries = new ArrayList<>();
     	clsCountry country;
     	String selectQuery = "SELECT COUNTRY_ID, ID, NAME, CONTINENT_ID FROM COUNTRIES WHERE CONTINENT_ID = '"+continentID+"'";
     	try{
@@ -173,7 +173,7 @@ public class DataBaseHelper {
     }
     
     public ArrayList<clsContinent> getContients() throws Exception{
-    	ArrayList<clsContinent> continents = new ArrayList<clsContinent>();
+    	ArrayList<clsContinent> continents = new ArrayList<>();
     	clsContinent continent;
     	String selectQuery = "SELECT CONTINENT_ID, ID, NAME FROM CONTINENTS";
     	try{

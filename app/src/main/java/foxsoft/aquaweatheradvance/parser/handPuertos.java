@@ -26,7 +26,7 @@ public class handPuertos extends DefaultHandler{
 	/** Receive notification of the beginning of the document */
 	public void startDocument() throws SAXException {
 		super.startDocument();
-		Forecasts = new ArrayList<clsForecast>();
+		Forecasts = new ArrayList<>();
 		sbItem = new StringBuilder();
 	}
 	
