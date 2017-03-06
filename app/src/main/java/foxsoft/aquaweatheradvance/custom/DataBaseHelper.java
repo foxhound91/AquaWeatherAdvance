@@ -5,21 +5,21 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteCantOpenDatabaseException;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
-public class DataBaseHelper {
+public class DataBaseHelper extends SQLiteOpenHelper {
 
     private final String TAG = this.getClass().toString();
 
-	//The Android's default system path of your application database.
-    private static final String DB_PATH = "/data/data/com.softxpress.aquaweather/databases/";
- 
+    private static final int DATABASE_VERSION = 1;
     private static final String DB_NAME = "ar_ur.sqlite";
  
     private SQLiteDatabase myDataBase; 
@@ -32,35 +32,9 @@ public class DataBaseHelper {
      * @param context
      */
     public DataBaseHelper(Context context) {
-    	//super(context, DB_NAME, null, 1);
+        super(context, DB_NAME, null, DATABASE_VERSION);
         this.myContext = context;
-		//DB_PATH = myContext.getFilesDir().getPath();
-		System.out.println("DEBUG - DIR: " + myContext.getFilesDir().getPath());
-    }	
- 
-  /** Creates a empty database on the system and rewrites it with your own database */
-    public void createDataBase() throws IOException {
-    	if(!checkDataBase()) copyDataBase();
-    }
- 
-    /**
-     * Check if the database already exist to avoid re-copying the file each time you open the application.
-     * @return true if it exists, false if it doesn't
-     */
-    private boolean checkDataBase(){
-    	SQLiteDatabase checkDB = null;
-    	try{
-    		String myPath = DB_PATH + DB_NAME;
-    		checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.NO_LOCALIZED_COLLATORS); //FIXME Failed to open database '/data/data/com.softxpress.aquaweather/databases/america.sqlite'.
-    	}catch(SQLiteCantOpenDatabaseException e){
-            Log.w(TAG, "DB doesn't exist");
-        }
-    	if(checkDB != null){
-    		checkDB.close();
-            return true;
-    	} else {
-            return false;
-        }
+		Log.d(TAG, "DIR: " + context.getFilesDir().getPath());
     }
  
     /**
@@ -69,45 +43,36 @@ public class DataBaseHelper {
      * This is done by transfering bytestream.
      * @throws IOException 
      * */
-    private void copyDataBase() throws IOException{
- 
-    	//Open your local db as the input stream
-    	InputStream myInput = myContext.getAssets().open(DB_NAME);
- 
-    	// Path to the just created empty db
-    	String outFileName = DB_PATH + DB_NAME;
- 
-    	//Open the empty db as the output stream
-    	OutputStream myOutput = new FileOutputStream(outFileName);
- 
-    	//transfer bytes from the inputfile to the outputfile
-    	byte[] buffer = new byte[1024];
-    	int length;
-    	while ((length = myInput.read(buffer))>0){
-    		myOutput.write(buffer, 0, length);
-    	}
- 
-    	//Close the streams
-    	myOutput.flush();
-    	myOutput.close();
-    	myInput.close();
+    private void copyDataBase(File dbFile) {
+        try{
+            InputStream myInput = myContext.getAssets().open(DB_NAME); ////DB_PATH = context.getFilesDir().getPath();
+            OutputStream myOutput = new FileOutputStream(dbFile);
+
+            byte[] buffer = new byte[1024];
+            while (myInput.read(buffer) > 0) {
+                myOutput.write(buffer);
+            }
+
+            //Close the streams
+            myOutput.flush();
+            myOutput.close();
+            myInput.close();
+        }catch (Exception e){
+            Log.e(TAG, "Error creating source database", e);
+        }
     }
  
     public void openDataBase() {
-        String myPath = DB_PATH + DB_NAME;
+        File dbFile = myContext.getDatabasePath(DB_NAME); //DB_PATH = context.getFilesDir().getPath();
+
+        if (!dbFile.exists()) {
+            copyDataBase(dbFile);
+        }
+
         try{
-        	myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+        	myDataBase = SQLiteDatabase.openDatabase(dbFile.getPath(), null, SQLiteDatabase.OPEN_READWRITE);
         }catch(Exception e){
-    		throw e;
-    	}
-    }
-    
-    public void openDataBaseWritable() {
-        String myPath = DB_PATH + DB_NAME;
-        try{
-        	myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
-        }catch(Exception e){
-    		throw e;
+    		Log.e(TAG, "Error trying to open the DB", e);
     	}
     }
     
@@ -215,8 +180,7 @@ public class DataBaseHelper {
         		} while (cursor.moveToNext());
         	}
     	}catch(Exception e){
-    		throw new Exception("SQL ERROR getStation");
-    		//throw e;
+    		Log.e(TAG, e.getMessage());
     	}
     	return station;
     }
@@ -228,6 +192,16 @@ public class DataBaseHelper {
     											+"' WHERE ROWID = 1";
     	myDataBase.execSQL(updateQuery);
     }
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+    }
     
     /*
     @Override
@@ -235,14 +209,6 @@ public class DataBaseHelper {
     	    if(myDataBase != null)
     		    myDataBase.close();
     	    super.close();
-	}
- 
-	@Override
-	public void onCreate(SQLiteDatabase db) {
-	}
- 
-	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 	}
 	*/
 }

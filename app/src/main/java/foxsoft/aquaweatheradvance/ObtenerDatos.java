@@ -191,13 +191,11 @@ public class ObtenerDatos extends Activity {
 		//GET LAST STATION SETTED BY THE USER
 		db_helper = new DataBaseHelper(this);
 		try {
-			db_helper.createDataBase();
-			db_helper.openDataBaseWritable();
+			db_helper.openDataBase();
 			selectedStation = db_helper.getLastStation();
 			//db_helper.close();
 		} catch (SQLException e) {
 			Log.e(TAG, e.getMessage());
-			e.printStackTrace();
 		} catch (FileNotFoundException e) {
 			Log.w(TAG, "DB file not found");
 		} catch (Exception e) {
