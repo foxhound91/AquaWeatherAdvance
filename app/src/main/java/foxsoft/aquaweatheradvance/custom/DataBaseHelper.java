@@ -86,7 +86,7 @@ public class DataBaseHelper {
     	myInput.close();
     }
  
-    public void openDataBase() throws Exception{
+    public void openDataBase() {
         String myPath = DB_PATH + DB_NAME;
         try{
         	myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
@@ -95,7 +95,7 @@ public class DataBaseHelper {
     	}
     }
     
-    public void openDataBaseWritable() throws Exception{
+    public void openDataBaseWritable() {
         String myPath = DB_PATH + DB_NAME;
         try{
         	myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
