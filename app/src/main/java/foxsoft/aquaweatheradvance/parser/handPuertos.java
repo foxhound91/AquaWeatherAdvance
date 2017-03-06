@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import foxsoft.aquaweatheradvance.custom.clsForecast;
 import foxsoft.aquaweatheradvance.custom.clsStation;
 
-public class handPuertos extends DefaultHandler{
+class handPuertos extends DefaultHandler{
 	
 	private clsStation Station = null;
 	private clsForecast Forecast = null;
