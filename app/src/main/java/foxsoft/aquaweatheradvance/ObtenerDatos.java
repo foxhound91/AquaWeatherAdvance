@@ -14,8 +14,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.*;
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
-import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -24,19 +26,19 @@ import foxsoft.aquaweatheradvance.parser.PuertosSaxParser;
 import foxsoft.aquaweatheradvance.custom.clsStation;
 
 public class ObtenerDatos extends Activity {
-	
+
 	private ArrayList<TextView> arrayT1Velocidad;
 	private ArrayList<ImageView> arrayT1Direccion;
-	
+
 	private ArrayList<TextView> arrayT1OlasAltura;
 	private ArrayList<ImageView> arrayT1OlasDireccion;
-	
+
 	private ArrayList<TextView> arrayT1Temperatura;
 	private ArrayList<TextView> arrayT1Pressure;
-	
+
 	private ArrayList<ImageView> arrayT1Weather;
 	private ArrayList<TextView> arrayT1Precipitation;
-	
+
 	private TextView textT1Velocidad00;
 	private TextView textT1Velocidad03;
 	private TextView textT1Velocidad06;
@@ -53,7 +55,7 @@ public class ObtenerDatos extends Activity {
 	private ImageView textT1Direccion15;
 	private ImageView textT1Direccion18;
 	private ImageView textT1Direccion21;
-	
+
 	private TextView textT1OlasAltura00;
 	private TextView textT1OlasAltura03;
 	private TextView textT1OlasAltura06;
@@ -70,7 +72,7 @@ public class ObtenerDatos extends Activity {
 	private ImageView textT1OlasDireccion15;
 	private ImageView textT1OlasDireccion18;
 	private ImageView textT1OlasDireccion21;
-	
+
 	private TextView textT1Temperatura00;
 	private TextView textT1Temperatura03;
 	private TextView textT1Temperatura06;
@@ -87,7 +89,7 @@ public class ObtenerDatos extends Activity {
 	private TextView textT1Pressure15;
 	private TextView textT1Pressure18;
 	private TextView textT1Pressure21;
-	
+
 	private ImageView textT1Weather00;
 	private ImageView textT1Weather03;
 	private ImageView textT1Weather06;
@@ -104,43 +106,51 @@ public class ObtenerDatos extends Activity {
 	private TextView textT1Precipitation15;
 	private TextView textT1Precipitation18;
 	private TextView textT1Precipitation21;
-	
+
 	private clsStation selectedStation;
-	
+
 	private TextView stationName;
-	
+
 	private ProgressDialog dialogoEspera;
-	
+
 	private AdView adView;
-	
+
 	private AsyncTaskCargaDatos ATCargaDatos;
-	
+
 	private DecimalFormat dfT, dfP;
-	
+
 	private Button button_loadStation;
-	
+
 	private Context mContext;
-	
+
 	private DataBaseHelper db_helper;
 
+	private Tracker mTracker;
+
 	private final String TAG = this.getClass().toString();
-	
+
 	private final static int DAY = 90000;
 	private final static int NIGHT = 210000;
-	
+
 	private static final int B_REQUEST = 0;
-		
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+
         mContext = this;
-        
+
+        if (mTracker == null) {
+            GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
+            // To enable debug logging use: adb shell setprop log.tag.GAv4 DEBUG
+            mTracker = analytics.newTracker(R.xml.global_tracker);
+        }
+
         //FORMAT FOR THE DOUBLE VALUES
       	dfT = new DecimalFormat("#.#");
       	dfP = new DecimalFormat("#");
-        
+
         //INSERT ALL TEXTVIEWS IN A SINGLE ARRAY
         arrayT1Velocidad = new ArrayList<TextView>();
         arrayT1Velocidad.add(textT1Velocidad00 = (TextView)findViewById(R.id.TV_T1_VEL_00));
@@ -214,9 +224,9 @@ public class ObtenerDatos extends Activity {
 		arrayT1Pressure.add(textT1Pressure15 = (TextView)findViewById(R.id.TV_T1_PRE_15));
 		arrayT1Pressure.add(textT1Pressure18 = (TextView)findViewById(R.id.TV_T1_PRE_18));
 		arrayT1Pressure.add(textT1Pressure21 = (TextView)findViewById(R.id.TV_T1_PRE_21));
-		
+
 		stationName = (TextView)findViewById(R.id.TV_STATION_NAME);
-		
+
 		//CONFIG BANNER
         adView = (AdView)findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()
@@ -228,7 +238,7 @@ public class ObtenerDatos extends Activity {
         } catch (Exception e) {
 			Log.e(TAG, "Exception", e);
 		}
-        
+
         //CONFIG BUTTON
         try{
 	        button_loadStation = (Button) findViewById(R.id.button1) ;
@@ -242,9 +252,9 @@ public class ObtenerDatos extends Activity {
         } catch (Exception e) {
 			Log.e(TAG, "Exception", e);
 		}
-        
+
 		dialogoEspera = ProgressDialog.show(this, "Loading", "please wait..");
-		
+
 		//GET LAST STATION SETTED BY THE USER
 		db_helper = new DataBaseHelper(this);
 		try {
@@ -258,7 +268,7 @@ public class ObtenerDatos extends Activity {
 		} catch (Exception e) {
 			Log.e(TAG, "Exception", e);
 		}
-		
+
 		ATCargaDatos = new AsyncTaskCargaDatos(this);
 		try{
 			ATCargaDatos.execute();
@@ -266,7 +276,7 @@ public class ObtenerDatos extends Activity {
 			Log.e(TAG, "Exception", e);
 		}
     }
-    
+
     /** EXECUTED AFTER THE SELECTION SCREEN */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == B_REQUEST && resultCode == Activity.RESULT_OK) {
@@ -274,7 +284,7 @@ public class ObtenerDatos extends Activity {
         		dialogoEspera = ProgressDialog.show(this, "Loading", "please wait..");
         		Bundle extras = data.getExtras();
             	String datas= extras.getString("EXTRA_ID");
-            	Log.d(TAG, "Value getted from onActivityResult, StationID = "+datas);
+            	Log.d(TAG, "Value got from onActivityResult, StationID = "+datas);
             	selectedStation.setId(datas);
             	ATCargaDatos = new AsyncTaskCargaDatos(this);
             	ATCargaDatos.execute();
@@ -283,27 +293,17 @@ public class ObtenerDatos extends Activity {
     		}
         }
     }
-    
+
     @Override
-    public void onStart() {
-      super.onStart();
+    public void onResume() {
+      super.onResume();
       try{
-    	  Log.d(TAG, "onStart");
-    	  //EasyTracker.getInstance(this).activityStart(this);
+          Log.i(TAG, "Setting screen name: " + this.getLocalClassName());
+          mTracker.setScreenName("Image~" + this.getLocalClassName());
+          mTracker.send(new HitBuilders.ScreenViewBuilder().build());
       } catch (Exception e) {
 			Log.e(TAG, "Exception", e);
 		}
-    }
-    
-    @Override
-    public void onStop() {
-      super.onStop();
-      try{
-    	  Log.d(TAG, "onStop");
-    	  //EasyTracker.getInstance(this).activityStop(this);
-      } catch (Exception e) {
-			Log.e(TAG, "Exception", e);
-	  }
     }
     
     @Override
