@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -19,6 +20,8 @@ import android.widget.Spinner;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -32,7 +35,7 @@ import foxsoft.aquaweatheradvance.custom.clsCountry;
 import foxsoft.aquaweatheradvance.custom.clsRegion;
 import foxsoft.aquaweatheradvance.custom.clsStation;
 
-public class SelectionScreen extends Activity {
+public class SelectionScreen extends FragmentActivity implements OnMapReadyCallback {
 
 	private final String TAG = this.getClass().toString();
 	
@@ -64,7 +67,9 @@ public class SelectionScreen extends Activity {
         
         //CONFIG LAYOUT
         try{
-        	//mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap(); //FIXME
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.map);
+            mapFragment.getMapAsync(this);
 
 			Display display = getWindowManager().getDefaultDisplay();
             DisplayMetrics outMetrics = new DisplayMetrics();
@@ -78,8 +83,8 @@ public class SelectionScreen extends Activity {
 			LinearLayout linearData = (LinearLayout) findViewById(R.id.linearData);
             linearData.setLayoutParams(new LayoutParams(dpWidth,LayoutParams.MATCH_PARENT)); //FILL_PARENT
 
-			//LinearLayout linearMap = (LinearLayout) findViewById(R.id.linearMap);
-            //linearMap.setLayoutParams(new LayoutParams(dpWidth,LayoutParams.MATCH_PARENT)); //FILL_PARENT
+			LinearLayout linearMap = (LinearLayout) findViewById(R.id.linearMap);
+            linearMap.setLayoutParams(new LayoutParams(dpWidth,LayoutParams.MATCH_PARENT)); //FILL_PARENT
             Log.i(TAG, "WIDTH SET AS "+dpWidth);
         } catch (Exception e){
         	Log.e(TAG, "Exception", e);
@@ -241,7 +246,7 @@ public class SelectionScreen extends Activity {
 					selectedStation = (clsStation) stationsSpinner.getSelectedItem();
 			        Log.d(TAG, "Setting station_id = "+selectedStation.getId()+" for "+selectedStation.getName());
 			        StationID = selectedStation.getId();
-			        //locateStation();
+			        locateStation();
 		        }
 
 		        @Override
@@ -288,5 +293,9 @@ public class SelectionScreen extends Activity {
 		}
 		return City;
 	}
-	
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+    }
 }

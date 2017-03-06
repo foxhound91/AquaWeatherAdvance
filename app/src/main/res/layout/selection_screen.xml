@@ -31,6 +31,7 @@
 			        android:id="@+id/spinner_continents"
 			        android:layout_width="fill_parent"
 			        android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
                     android:gravity="center" />
 	
 			    <TextView
@@ -46,6 +47,7 @@
 			        android:id="@+id/spinner_countries"
 			        android:layout_width="fill_parent"
 			        android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
                     android:gravity="center" />
 			
 			    <TextView
@@ -61,6 +63,7 @@
 			        android:id="@+id/spinner_regions"
 			        android:layout_width="fill_parent"
 			        android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
                     android:gravity="center" />
 			
 			    <TextView
@@ -76,6 +79,7 @@
 			        android:id="@+id/spinner_stations"
 			        android:layout_width="fill_parent"
 			        android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
                     android:gravity="center" />
 			
 			    <TextView
@@ -91,7 +95,7 @@
 			        android:layout_height="wrap_content"
 			        android:text="@string/ACCEPT" />
 		    </LinearLayout>
-		    <!-- <LinearLayout
+		    <LinearLayout
 	            android:id="@+id/linearMap"
 	            android:layout_width="345dp"
 	            android:layout_height="fill_parent"
@@ -103,7 +107,7 @@
 					android:name="com.google.android.gms.maps.SupportMapFragment"
 					android:layout_width="match_parent"
 					android:layout_height="match_parent" />
-	    	</LinearLayout> -->
+	    	</LinearLayout>
     	</LinearLayout>
     </HorizontalScrollView>
 
