@@ -45,9 +45,7 @@
         android:id="@+id/header"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:background="@android:color/transparent"
+		android:background="@android:color/transparent"
         android:shrinkColumns="*"
         android:stretchColumns="*" >
         
