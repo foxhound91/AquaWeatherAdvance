@@ -41,10 +41,10 @@ public class SelectionScreen extends Activity {
 	private DataBaseHelper db_helper;
 	private ArrayList<clsContinent> db_continents;
 	
-	private Spinner dropdownContinents;
-	private Spinner dropdownCountries;
-	private Spinner dropdownRegions;
-	private Spinner dropdownStations;
+	private Spinner continentsSpinner;
+	private Spinner countriesSpinner;
+	private Spinner regionsSpinner;
+	private Spinner stationsSpinner;
 
 	private ArrayAdapter<clsCountry> adapter_countries;
 	private ArrayAdapter<clsRegion> adapter_regions;
@@ -114,43 +114,43 @@ public class SelectionScreen extends Activity {
         
         try{
         	//CONFIG SPINNER (DROP-DOWN OF CONTINENTS)
-        	dropdownContinents = (Spinner) findViewById(R.id.spinner_continents);
+        	continentsSpinner = (Spinner) findViewById(R.id.spinner_continents);
 			ArrayAdapter<clsContinent> adapter_continents = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
 	        adapter_continents.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-	        dropdownContinents.setAdapter(adapter_continents);
+	        continentsSpinner.setAdapter(adapter_continents);
 	        for(int x=0;x<db_continents.size();x++){
 	        	adapter_continents.add(db_continents.get(x));
 	        }
 	        
         	//CONFIG SPINNER (DROP-DOWN OF COUNTRIES)
-	        dropdownCountries = (Spinner) findViewById(R.id.spinner_countries);
+	        countriesSpinner = (Spinner) findViewById(R.id.spinner_countries);
 	        adapter_countries = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
 	        //adapter_countries.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	        adapter_countries.setDropDownViewResource(android.R.layout.simple_list_item_1);
-	        dropdownCountries.setAdapter(adapter_countries);
+	        countriesSpinner.setAdapter(adapter_countries);
 	        	        
         	//CONFIG SPINNER (DROP-DOWN OF REGIONS)
-	        dropdownRegions = (Spinner) findViewById(R.id.spinner_regions);
+	        regionsSpinner = (Spinner) findViewById(R.id.spinner_regions);
 	        adapter_regions = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
 	        adapter_regions.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-	        dropdownRegions.setAdapter(adapter_regions);
+	        regionsSpinner.setAdapter(adapter_regions);
 	        
 			//CONFIG SPINNER (DROP-DOWN OF STATIONS)
-	        dropdownStations = (Spinner) findViewById(R.id.spinner_stations);
+	        stationsSpinner = (Spinner) findViewById(R.id.spinner_stations);
 	        adapter_stations = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
 	        adapter_stations.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-			dropdownStations.setAdapter(adapter_stations);
+			stationsSpinner.setAdapter(adapter_stations);
         }catch (Exception e){
         	Log.e(TAG, e.getMessage());
         }
         
-        dropdownContinents.setOnItemSelectedListener(new OnItemSelectedListener() {
+        continentsSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 	        @Override
 	        public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 	        	//dialogoEspera = ProgressDialog.show(context, "Loading", "please wait..");
 	        	ArrayList<clsCountry> db_countries;
 	        	try{
-	        		selectedContinent = (clsContinent) dropdownContinents.getSelectedItem();
+	        		selectedContinent = (clsContinent) continentsSpinner.getSelectedItem();
 	        		adapter_countries.clear();
 		        	adapter_regions.clear();
 		        	adapter_stations.clear();
@@ -163,7 +163,7 @@ public class SelectionScreen extends Activity {
 		        			adapter_countries.add(db_countries.get(x));
 		        		}
 			        }
-		        	dropdownCountries.setSelection(0);//FIXME
+		        	countriesSpinner.setSelection(0);//FIXME
 	        	} catch (Exception e){
 					Log.e(TAG, "Exception", e);
 	        	}
@@ -175,13 +175,13 @@ public class SelectionScreen extends Activity {
 	        }
 	    });
         
-        dropdownCountries.setOnItemSelectedListener(new OnItemSelectedListener() {
+        countriesSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 		        @Override
 		        public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 		        	//dialogoEspera = ProgressDialog.show(context, "Loading", "please wait..");
 		        	ArrayList<clsRegion> db_regions;
 		        	try{
-		        		selectedCountry = (clsCountry) dropdownCountries.getSelectedItem();
+		        		selectedCountry = (clsCountry) countriesSpinner.getSelectedItem();
 			        	adapter_regions.clear();
 			        	adapter_stations.clear();
 			        	
@@ -193,7 +193,7 @@ public class SelectionScreen extends Activity {
 			        			adapter_regions.add(db_regions.get(x));
 			        		}
 						}
-			        	dropdownRegions.setSelection(0);//FIXME
+			        	regionsSpinner.setSelection(0);//FIXME
 		        	} catch (Exception e){
 		        		Log.e(TAG, "Exception", e);
 		        	}
@@ -205,12 +205,12 @@ public class SelectionScreen extends Activity {
 		        }
 		    });
 		
-        dropdownRegions.setOnItemSelectedListener(new OnItemSelectedListener() {
+        regionsSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 		        @Override
 		        public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 		        	//dialogoEspera = ProgressDialog.show(context, "Loading", "please wait..");
 		        	ArrayList<clsStation> db_stations;
-		        	selectedRegion = (clsRegion) dropdownRegions.getSelectedItem();
+		        	selectedRegion = (clsRegion) regionsSpinner.getSelectedItem();
 		        	adapter_stations.clear();
 		        	try {
 						db_stations = db_helper.getStations(selectedRegion.getRegion_Id());
@@ -224,7 +224,7 @@ public class SelectionScreen extends Activity {
 		        	} catch (Exception e) {
 						Log.e(TAG, "Exception", e);
 					}
-		        	dropdownStations.setSelection(0);//FIXME
+		        	stationsSpinner.setSelection(0);//FIXME
 		        	//StationID = adapter_stations.getItem(0).getId();
 		        }
 
@@ -234,11 +234,11 @@ public class SelectionScreen extends Activity {
 		        }
 		    });
         
-        dropdownStations.setOnItemSelectedListener(new OnItemSelectedListener() {
+        stationsSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 		        @Override
 		        public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 		        	StationID = null;
-					selectedStation = (clsStation) dropdownStations.getSelectedItem();
+					selectedStation = (clsStation) stationsSpinner.getSelectedItem();
 			        Log.d(TAG, "Setting station_id = "+selectedStation.getId()+" for "+selectedStation.getName());
 			        StationID = selectedStation.getId();
 			        //locateStation();
