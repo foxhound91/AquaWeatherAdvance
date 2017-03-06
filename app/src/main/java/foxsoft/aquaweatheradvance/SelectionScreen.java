@@ -241,7 +241,7 @@ public class SelectionScreen extends Activity {
 					selectedStation = (clsStation) dropdownStations.getSelectedItem();
 			        Log.d(TAG, "Setting station_id = "+selectedStation.getId()+" for "+selectedStation.getName());
 			        StationID = selectedStation.getId();
-			        locateStation();
+			        //locateStation();
 		        }
 
 		        @Override
