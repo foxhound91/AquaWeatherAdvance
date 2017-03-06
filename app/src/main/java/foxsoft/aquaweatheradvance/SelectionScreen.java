@@ -38,8 +38,6 @@ public class SelectionScreen extends Activity {
 	
 	private String StationID = null;
 
-	private Button button_accept;
-
 	private DataBaseHelper db_helper;
 	private ArrayList<clsContinent> db_continents;
 	
@@ -47,8 +45,7 @@ public class SelectionScreen extends Activity {
 	private Spinner dropdownCountries;
 	private Spinner dropdownRegions;
 	private Spinner dropdownStations;
-	
-	private ArrayAdapter<clsContinent> adapter_continents;
+
 	private ArrayAdapter<clsCountry> adapter_countries;
 	private ArrayAdapter<clsRegion> adapter_regions;
 	private ArrayAdapter<clsStation> adapter_stations;
@@ -57,10 +54,7 @@ public class SelectionScreen extends Activity {
 	private clsCountry selectedCountry;
 	private clsRegion selectedRegion;
 	private clsStation selectedStation;
-	
-	private LinearLayout linearData;
-	private LinearLayout linearMap;
-	
+
 	private GoogleMap mMap;
 	
 	@Override
@@ -80,11 +74,11 @@ public class SelectionScreen extends Activity {
             //int dpHeight = (int) (outMetrics.heightPixels / density);
             //int dpWidth  = (int) (outMetrics.widthPixels / density);
             int dpWidth  = outMetrics.widthPixels;
-            
-            linearData = (LinearLayout) findViewById(R.id.linearData);
+
+			LinearLayout linearData = (LinearLayout) findViewById(R.id.linearData);
             linearData.setLayoutParams(new LayoutParams(dpWidth,LayoutParams.MATCH_PARENT)); //FILL_PARENT
-            
-            linearMap = (LinearLayout) findViewById(R.id.linearMap);
+
+			LinearLayout linearMap = (LinearLayout) findViewById(R.id.linearMap);
             linearMap.setLayoutParams(new LayoutParams(dpWidth,LayoutParams.MATCH_PARENT)); //FILL_PARENT
             Log.i(TAG, "WIDTH SET AS "+dpWidth);
         } catch (Exception e){
@@ -105,7 +99,7 @@ public class SelectionScreen extends Activity {
         
         //ACCEPT BUTTON
         try {
-	        button_accept = (Button) findViewById(R.id.button1) ;
+			Button button_accept = (Button) findViewById(R.id.button1);
 	        button_accept.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
 	            	Intent data = new Intent();
@@ -121,7 +115,7 @@ public class SelectionScreen extends Activity {
         try{
         	//CONFIG SPINNER (DROP-DOWN OF CONTINENTS)
         	dropdownContinents = (Spinner) findViewById(R.id.spinner_continents);
-	        adapter_continents = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
+			ArrayAdapter<clsContinent> adapter_continents = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
 	        adapter_continents.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	        dropdownContinents.setAdapter(adapter_continents);
 	        for(int x=0;x<db_continents.size();x++){
