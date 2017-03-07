@@ -30,10 +30,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import foxsoft.aquaweatheradvance.custom.DataBaseHelper;
-import foxsoft.aquaweatheradvance.custom.clsContinent;
-import foxsoft.aquaweatheradvance.custom.clsCountry;
-import foxsoft.aquaweatheradvance.custom.clsRegion;
-import foxsoft.aquaweatheradvance.custom.clsStation;
+import foxsoft.aquaweatheradvance.custom.Continent;
+import foxsoft.aquaweatheradvance.custom.Country;
+import foxsoft.aquaweatheradvance.custom.Region;
+import foxsoft.aquaweatheradvance.custom.Station;
 
 public class SelectionScreen extends FragmentActivity implements OnMapReadyCallback {
 
@@ -42,21 +42,21 @@ public class SelectionScreen extends FragmentActivity implements OnMapReadyCallb
 	private String StationID = null;
 
 	private DataBaseHelper db_helper;
-	private ArrayList<clsContinent> db_continents;
+	private ArrayList<Continent> db_continents;
 	
 	private Spinner continentsSpinner;
 	private Spinner countriesSpinner;
 	private Spinner regionsSpinner;
 	private Spinner stationsSpinner;
 
-	private ArrayAdapter<clsCountry> adapter_countries;
-	private ArrayAdapter<clsRegion> adapter_regions;
-	private ArrayAdapter<clsStation> adapter_stations;
+	private ArrayAdapter<Country> adapter_countries;
+	private ArrayAdapter<Region> adapter_regions;
+	private ArrayAdapter<Station> adapter_stations;
 	
-	private clsContinent selectedContinent;
-	private clsCountry selectedCountry;
-	private clsRegion selectedRegion;
-	private clsStation selectedStation;
+	private Continent selectedContinent;
+	private Country selectedCountry;
+	private Region selectedRegion;
+	private Station selectedStation;
 
 	private GoogleMap mMap;
 	
@@ -120,7 +120,7 @@ public class SelectionScreen extends FragmentActivity implements OnMapReadyCallb
         try{
         	//CONFIG SPINNER (DROP-DOWN OF CONTINENTS)
         	continentsSpinner = (Spinner) findViewById(R.id.spinner_continents);
-			ArrayAdapter<clsContinent> adapter_continents = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
+			ArrayAdapter<Continent> adapter_continents = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, android.R.id.text1);
 	        adapter_continents.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 	        continentsSpinner.setAdapter(adapter_continents);
 	        for(int x=0;x<db_continents.size();x++){
@@ -153,9 +153,9 @@ public class SelectionScreen extends FragmentActivity implements OnMapReadyCallb
 	        @Override
 	        public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 	        	//dialogoEspera = ProgressDialog.show(context, "Loading", "please wait..");
-	        	ArrayList<clsCountry> db_countries;
+	        	ArrayList<Country> db_countries;
 	        	try{
-	        		selectedContinent = (clsContinent) continentsSpinner.getSelectedItem();
+	        		selectedContinent = (Continent) continentsSpinner.getSelectedItem();
 	        		adapter_countries.clear();
 		        	adapter_regions.clear();
 		        	adapter_stations.clear();
@@ -184,9 +184,9 @@ public class SelectionScreen extends FragmentActivity implements OnMapReadyCallb
 		        @Override
 		        public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 		        	//dialogoEspera = ProgressDialog.show(context, "Loading", "please wait..");
-		        	ArrayList<clsRegion> db_regions;
+		        	ArrayList<Region> db_regions;
 		        	try{
-		        		selectedCountry = (clsCountry) countriesSpinner.getSelectedItem();
+		        		selectedCountry = (Country) countriesSpinner.getSelectedItem();
 			        	adapter_regions.clear();
 			        	adapter_stations.clear();
 			        	
@@ -214,8 +214,8 @@ public class SelectionScreen extends FragmentActivity implements OnMapReadyCallb
 		        @Override
 		        public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 		        	//dialogoEspera = ProgressDialog.show(context, "Loading", "please wait..");
-		        	ArrayList<clsStation> db_stations;
-		        	selectedRegion = (clsRegion) regionsSpinner.getSelectedItem();
+		        	ArrayList<Station> db_stations;
+		        	selectedRegion = (Region) regionsSpinner.getSelectedItem();
 		        	adapter_stations.clear();
 		        	try {
 						db_stations = db_helper.getStations(selectedRegion.getRegion_Id());
@@ -243,7 +243,7 @@ public class SelectionScreen extends FragmentActivity implements OnMapReadyCallb
 		        @Override
 		        public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 		        	StationID = null;
-					selectedStation = (clsStation) stationsSpinner.getSelectedItem();
+					selectedStation = (Station) stationsSpinner.getSelectedItem();
 			        Log.d(TAG, "Setting station_id = "+selectedStation.getId()+" for "+selectedStation.getName());
 			        StationID = selectedStation.getId();
 			        locateStation();

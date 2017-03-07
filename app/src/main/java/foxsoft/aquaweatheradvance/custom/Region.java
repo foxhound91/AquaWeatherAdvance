@@ -1,6 +1,6 @@
 package foxsoft.aquaweatheradvance.custom;
 
-public class clsRegion extends clsLocation {
+public class Region extends Location {
 	
 	private String region_Id;
 	private String country_Id;

@@ -3,11 +3,11 @@ package foxsoft.aquaweatheradvance.custom;
 import java.util.ArrayList;
 
 
-public class clsStation extends clsLocation {
+public class Station extends Location {
 	
 	private String region_Id;
 	private String timezone;
-	private ArrayList<clsForecast> Forecast;
+	private ArrayList<foxsoft.aquaweatheradvance.custom.Forecast> Forecast;
 	
 	public String getTimezone() {
 		return timezone;
@@ -16,10 +16,10 @@ public class clsStation extends clsLocation {
 		this.timezone = timezone;
 	}
 	
-	public ArrayList<clsForecast> getForecast() {
+	public ArrayList<foxsoft.aquaweatheradvance.custom.Forecast> getForecast() {
 		return Forecast;
 	}
-	public void setForecast(ArrayList<clsForecast> forecast) {
+	public void setForecast(ArrayList<foxsoft.aquaweatheradvance.custom.Forecast> forecast) {
 		Forecast = forecast;
 	}
 	public String getRegion_Id() {

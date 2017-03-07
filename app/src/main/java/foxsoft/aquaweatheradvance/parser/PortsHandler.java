@@ -5,20 +5,20 @@ import org.xml.sax.helpers.DefaultHandler;
 
 import java.util.ArrayList;
 
-import foxsoft.aquaweatheradvance.custom.clsForecast;
-import foxsoft.aquaweatheradvance.custom.clsStation;
+import foxsoft.aquaweatheradvance.custom.Forecast;
+import foxsoft.aquaweatheradvance.custom.Station;
 
-class handPuertos extends DefaultHandler{
+class PortsHandler extends DefaultHandler{
 	
-	private clsStation Station = null;
-	private clsForecast Forecast = null;
-	private ArrayList<clsForecast> Forecasts;
+	private foxsoft.aquaweatheradvance.custom.Station Station = null;
+	private foxsoft.aquaweatheradvance.custom.Forecast Forecast = null;
+	private ArrayList<foxsoft.aquaweatheradvance.custom.Forecast> Forecasts;
 	
 	// In this variable we store the tags data
 	private StringBuilder sbItem;
 
 	/** Method returns an Station with loaded data */
-	public clsStation getStation() {
+	public foxsoft.aquaweatheradvance.custom.Station getStation() {
 		Station.setForecast(Forecasts);
 		return Station;
 	}
@@ -34,13 +34,13 @@ class handPuertos extends DefaultHandler{
 	public void startElement(String uri, String localName, String name, org.xml.sax.Attributes attributes) throws SAXException {
 		super.startElement(uri, localName, name, attributes);
 		if (localName.equals("station")) {
-			Station = new clsStation();
+			Station = new Station();
 			Station.setId(attributes.getValue("id"));
 			Station.setName(attributes.getValue("name"));
 			Station.setTimezone(attributes.getValue("timezone"));
 		}
 		if (localName.equals("forecast")) {
-			Forecast = new clsForecast();
+			Forecast = new Forecast();
 			Forecast.setTime(attributes.getValue("time"));
 		}
 	}

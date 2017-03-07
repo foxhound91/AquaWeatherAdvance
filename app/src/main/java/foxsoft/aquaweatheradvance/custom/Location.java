@@ -1,6 +1,6 @@
 package foxsoft.aquaweatheradvance.custom;
 
-public abstract class clsLocation {
+public abstract class Location {
 	
 	private String id;
 	private String name;

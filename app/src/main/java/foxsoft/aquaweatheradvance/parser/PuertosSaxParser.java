@@ -8,7 +8,7 @@ import java.net.URL;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import foxsoft.aquaweatheradvance.custom.clsStation;
+import foxsoft.aquaweatheradvance.custom.Station;
 
 public class PuertosSaxParser {
 	
@@ -23,12 +23,12 @@ public class PuertosSaxParser {
 		}
 	}
 	
-	/** Instance the class handPuertos to read the XML data */
-	public clsStation parseXML() throws IOException{
+	/** Instance the class PortsHandler to read the XML data */
+	public Station parseXML() throws IOException{
 		SAXParserFactory factory = SAXParserFactory.newInstance();
 		try {
 			 SAXParser parser = factory.newSAXParser();
-			 handPuertos handler = new handPuertos();
+			 PortsHandler handler = new PortsHandler();
 			 parser.parse(this.getInputStream(), handler);
 			 return handler.getStation();
 		} catch (IOException e) {

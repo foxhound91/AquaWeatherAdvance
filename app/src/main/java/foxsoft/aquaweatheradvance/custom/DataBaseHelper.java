@@ -9,7 +9,6 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -72,15 +71,15 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     	}
     }
     
-    public ArrayList<clsStation> getStations(String regionID) throws Exception{
-    	ArrayList<clsStation> stations = new ArrayList<>();
-    	clsStation station;
+    public ArrayList<Station> getStations(String regionID) throws Exception{
+    	ArrayList<Station> stations = new ArrayList<>();
+    	Station station;
     	String selectQuery = "SELECT ID, NAME, REGION_ID FROM STATIONS WHERE REGION_ID = '"+regionID+"'";
     	try{
     		Cursor cursor = myDataBase.rawQuery(selectQuery, null);
         	if (cursor.moveToFirst()) {
         		do {
-        			station = new clsStation();
+        			station = new Station();
         			station.setId(cursor.getString(0));
         			station.setName(cursor.getString(1));
         			station.setRegion_Id(cursor.getString(2));
@@ -94,15 +93,15 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     	return stations;
     }
     
-    public ArrayList<clsRegion> getRegions(String countryID) throws Exception{
-    	ArrayList<clsRegion> regions = new ArrayList<>();
-    	clsRegion region;
+    public ArrayList<Region> getRegions(String countryID) throws Exception{
+    	ArrayList<Region> regions = new ArrayList<>();
+    	Region region;
     	String selectQuery = "SELECT REGION_ID, ID, NAME, COUNTRY_ID FROM REGIONS WHERE COUNTRY_ID = '"+countryID+"'";
     	try{
     		Cursor cursor = myDataBase.rawQuery(selectQuery, null);
         	if (cursor.moveToFirst()) {
         		do {
-        			region = new clsRegion();
+        			region = new Region();
         			region.setRegion_Id(cursor.getString(0));
         			region.setId(cursor.getString(1));
         			region.setName(cursor.getString(2));
@@ -117,15 +116,15 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     	return regions;
     }
     
-    public ArrayList<clsCountry> getCountries(String continentID) throws Exception{
-    	ArrayList<clsCountry> countries = new ArrayList<>();
-    	clsCountry country;
+    public ArrayList<Country> getCountries(String continentID) throws Exception{
+    	ArrayList<Country> countries = new ArrayList<>();
+    	Country country;
     	String selectQuery = "SELECT COUNTRY_ID, ID, NAME, CONTINENT_ID FROM COUNTRIES WHERE CONTINENT_ID = '"+continentID+"'";
     	try{
     		Cursor cursor = myDataBase.rawQuery(selectQuery, null);
         	if (cursor.moveToFirst()) {
         		do {
-        			country = new clsCountry();
+        			country = new Country();
         			country.setCountry_Id(cursor.getString(0));
         			country.setId(cursor.getString(1));
         			country.setName(cursor.getString(2));
@@ -140,15 +139,15 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     	return countries;
     }
     
-    public ArrayList<clsContinent> getContinents() throws Exception{
-    	ArrayList<clsContinent> continents = new ArrayList<>();
-    	clsContinent continent;
+    public ArrayList<Continent> getContinents() throws Exception{
+    	ArrayList<Continent> continents = new ArrayList<>();
+    	Continent continent;
     	String selectQuery = "SELECT CONTINENT_ID, ID, NAME FROM CONTINENTS";
     	try{
     		Cursor cursor = myDataBase.rawQuery(selectQuery, null);
         	if (cursor.moveToFirst()) {
         		do {
-        			continent = new clsContinent();
+        			continent = new Continent();
         			continent.setContinent_Id(cursor.getString(0));
         			continent.setId(cursor.getString(1));
         			continent.setName(cursor.getString(2));
@@ -161,14 +160,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     	return continents;
     }
     
-    public clsStation getLastStation() throws Exception{
-    	clsStation station = null;
+    public Station getLastStation() throws Exception{
+    	Station station = null;
     	String selectQuery = "SELECT ID, NAME, REGION_ID FROM LAST_STATION";
     	try{
     		Cursor cursor = myDataBase.rawQuery(selectQuery, null);
         	if (cursor.moveToFirst()) {
         		do {
-        			station = new clsStation();
+        			station = new Station();
         			station.setId(cursor.getString(0));
         			station.setName(cursor.getString(1));
         			station.setRegion_Id(cursor.getString(2));
@@ -180,7 +179,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     	return station;
     }
     
-    public void updateLastStation(clsStation station) throws SQLException{
+    public void updateLastStation(Station station) throws SQLException{
     	String updateQuery = "UPDATE LAST_STATION SET ID = '"+station.getId()
     											+"', NAME = '"+station.getName()
     											+"', REGION_ID = '"+station.getRegion_Id()

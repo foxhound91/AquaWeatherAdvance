@@ -1,6 +1,6 @@
 package foxsoft.aquaweatheradvance.custom;
 
-public class clsForecast {
+public class Forecast {
 	
 	private String time = null;
 	private Double air_temperature = null;

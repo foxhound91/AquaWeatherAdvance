@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 import foxsoft.aquaweatheradvance.custom.DataBaseHelper;
 import foxsoft.aquaweatheradvance.parser.PuertosSaxParser;
-import foxsoft.aquaweatheradvance.custom.clsStation;
+import foxsoft.aquaweatheradvance.custom.Station;
 
 public class ObtenerDatos extends Activity {
 
@@ -40,7 +40,7 @@ public class ObtenerDatos extends Activity {
 	private ArrayList<ImageView> arrayT1Weather;
 	private ArrayList<TextView> arrayT1Precipitation;
 
-	private clsStation selectedStation;
+	private Station selectedStation;
 
 	private TextView stationName;
 
@@ -256,7 +256,7 @@ public class ObtenerDatos extends Activity {
     public class AsyncTaskCargaDatos extends AsyncTask<Void, Void, Void> {
     	
     	private PuertosSaxParser saxparser;
-    	private clsStation Station;
+    	private foxsoft.aquaweatheradvance.custom.Station Station;
         Context mContext;
         
         AsyncTaskCargaDatos(Context context) {
@@ -278,7 +278,7 @@ public class ObtenerDatos extends Activity {
     			Log.e(TAG, "Exception", e);
     		}
     		Log.d(TAG, "Data loaded sucessfully from feed for " + Station.getName());
-            selectedStation = new clsStation();
+            selectedStation = new Station();
 			selectedStation.setName(Station.getName());
 			selectedStation.setId(Station.getId());
     		return null;
@@ -310,7 +310,7 @@ public class ObtenerDatos extends Activity {
     }
     
     /** DECODES THE WIND DIRECTION TO ASSIGN A PICTURE */
-    private void decodeWindDirection (clsStation Station, ArrayList<ImageView> arrayWindDireccion){
+    private void decodeWindDirection (Station Station, ArrayList<ImageView> arrayWindDireccion){
     	for(int i=0; i<8; i++){
 			Log.d(TAG, "Decoding wind direction for time " + Station.getForecast().get(i).getTime());
 			if (Station.getForecast().get(i).getWind_direction().equals("ESE")){
@@ -352,7 +352,7 @@ public class ObtenerDatos extends Activity {
     }
     
     /** DECODES THE WAVE DIRECTION TO ASSIGN A PICTURE */
-    private void decodeWaveDirection (clsStation Station, ArrayList<ImageView> arrayWavesDirection){
+    private void decodeWaveDirection (Station Station, ArrayList<ImageView> arrayWavesDirection){
     	for(int i=0; i<8; i++){
     		Log.d(TAG, "Decoding wave direction for time " + Station.getForecast().get(i).getTime());
     		if (Station.getForecast().get(i).getWave_direction().equals("ESE")){
@@ -394,7 +394,7 @@ public class ObtenerDatos extends Activity {
     }
 
     /** DECODES THE WEATHER TO ASSIGN A PICTURE */
-    private void decodeWeather (clsStation Station, ArrayList<ImageView> arrayWeather){
+    private void decodeWeather (Station Station, ArrayList<ImageView> arrayWeather){
     	int value;
     	for(int i=0; i<8; i++){
     		value = Integer.parseInt(Station.getForecast().get(i).getTime());
