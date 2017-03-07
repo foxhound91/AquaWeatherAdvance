@@ -189,7 +189,11 @@ public class MainScreen extends Activity {
 			db_helper.openDataBase();
 			selectedStation = db_helper.getLastStation();
 			//db_helper.close();
-		} catch (SQLException e) {
+            mTracker.send(new HitBuilders.EventBuilder() //FIXME delete this
+                    .setCategory("Action")
+                    .setAction("DB open")
+                    .build());
+        } catch (SQLException e) {
 			Log.e(TAG, e.getMessage());
 		} catch (Exception e) {
 			Log.e(TAG, "Generic Exception", e);
