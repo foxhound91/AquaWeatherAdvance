@@ -17,6 +17,8 @@ import com.google.android.gms.ads.*;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crash.FirebaseCrash;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -53,7 +55,7 @@ public class MainScreen extends Activity {
 
 	private DataBaseHelper db_helper;
 
-	private Tracker mTracker;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
 	private final String TAG = this.getClass().toString();
 
@@ -69,11 +71,7 @@ public class MainScreen extends Activity {
 
         mContext = this;
 
-        if (mTracker == null) {
-            GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
-            // To enable debug logging use: adb shell setprop log.tag.GAv4 DEBUG
-            mTracker = analytics.newTracker(R.xml.global_tracker);
-        }
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         //FORMAT FOR THE DOUBLE VALUES
       	dfT = new DecimalFormat("#.#");
@@ -164,7 +162,9 @@ public class MainScreen extends Activity {
         try{
         	adView.loadAd(adRequest);
         } catch (Exception e) {
-			Log.e(TAG, "Exception", e);
+			Log.e(TAG, e.getMessage());
+            FirebaseCrash.logcat(Log.ERROR, TAG, "Issue loading AdView");
+            FirebaseCrash.report(e);
 		}
 
         //CONFIG BUTTON
@@ -179,6 +179,8 @@ public class MainScreen extends Activity {
 	        });
         } catch (Exception e) {
 			Log.e(TAG, "Exception", e);
+            FirebaseCrash.logcat(Log.ERROR, TAG, "Issue configuring button_loadStation");
+            FirebaseCrash.report(e);
 		}
 
 		waitingDialogue = ProgressDialog.show(this, "Loading", "please wait..");
@@ -189,14 +191,10 @@ public class MainScreen extends Activity {
 			db_helper.openDataBase();
 			selectedStation = db_helper.getLastStation();
 			//db_helper.close();
-            mTracker.send(new HitBuilders.EventBuilder() //FIXME delete this
-                    .setCategory("Action")
-                    .setAction("DB open")
-                    .build());
-        } catch (SQLException e) {
-			Log.e(TAG, e.getMessage());
 		} catch (Exception e) {
 			Log.e(TAG, "Generic Exception", e);
+            FirebaseCrash.logcat(Log.ERROR, TAG, "Issue reading the DB");
+            FirebaseCrash.report(e);
 		}
 
 		ATCargaDatos = new AsyncTaskCargaDatos(this);
@@ -204,6 +202,8 @@ public class MainScreen extends Activity {
 			ATCargaDatos.execute();
         } catch (Exception e) {
 			Log.e(TAG, "Exception", e);
+            FirebaseCrash.logcat(Log.ERROR, TAG, "Issue executing ATCargaDatos");
+            FirebaseCrash.report(e);
 		}
     }
 
@@ -219,7 +219,9 @@ public class MainScreen extends Activity {
             	ATCargaDatos = new AsyncTaskCargaDatos(this);
             	ATCargaDatos.execute();
         	} catch (Exception e) {
-    			Log.e(TAG, "Exception", e);
+    			Log.e(TAG, e.getMessage());
+                FirebaseCrash.logcat(Log.ERROR, TAG, "Issue lunching Main Screen");
+                FirebaseCrash.report(e);
     		}
         }
     }
@@ -228,11 +230,15 @@ public class MainScreen extends Activity {
     public void onResume() {
       super.onResume();
       try{
-          Log.i(TAG, "Setting screen name: " + this.getLocalClassName());
-          mTracker.setScreenName("Image~" + this.getLocalClassName());
-          mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+          Bundle bundle = new Bundle();
+          bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "1");
+          bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "Setting screen name"+this.getLocalClassName());
+          bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
+          mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
       } catch (Exception e) {
-			Log.e(TAG, "Exception", e);
+          Log.e(TAG, "Exception", e);
+          FirebaseCrash.logcat(Log.ERROR, TAG, "Issue resuming activity");
+          FirebaseCrash.report(e);
 		}
     }
     
@@ -242,11 +248,10 @@ public class MainScreen extends Activity {
       try{
     	  Log.d(TAG, "onDestroy");
     	  db_helper.updateLastStation(selectedStation);
-      } catch (SQLException e) {
-			Log.e(TAG, e.getMessage());
-			e.printStackTrace();
       } catch (Exception e) {
-			Log.e(TAG, e.getMessage());
+          Log.e(TAG, e.getMessage());
+          FirebaseCrash.logcat(Log.ERROR, TAG, "Issue updating DB last station selected");
+          FirebaseCrash.report(e);
 		}
     }
     
@@ -272,7 +277,9 @@ public class MainScreen extends Activity {
     				Station = saxparser.parseXML();
     			}
     		} catch (Exception e) {
-    			Log.e(TAG, "Exception", e);
+    			Log.e(TAG, e.getMessage());
+                FirebaseCrash.logcat(Log.ERROR, TAG, "Issue lunching Main Screen");
+                FirebaseCrash.report(e);
     		}
     		Log.d(TAG, "Data loaded sucessfully from feed for " + Station.getName());
             selectedStation = new Station();
@@ -302,6 +309,8 @@ public class MainScreen extends Activity {
     			waitingDialogue.dismiss();
     		} catch (Exception e) {
     			Log.e(TAG, "Exception", e);
+                FirebaseCrash.logcat(Log.ERROR, TAG, "Issue assigning layout data");
+                FirebaseCrash.report(e);
     		}
     	}
     }

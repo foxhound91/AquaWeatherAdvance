@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "100724901274-5kp5759ob00ng6il90q2l5sqjikanm34.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "foxsoft.aquaweatheradvance",
+            "certificate_hash": "aeeab18da080e69f2470b01b6a9b3d1c8eb49993"
+          }
+        },
+        {
           "client_id": "100724901274-vgnavle6mqbns4v5upu5sb5llrgajq0q.apps.googleusercontent.com",
           "client_type": 3
         },

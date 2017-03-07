@@ -24,6 +24,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.crash.FirebaseCrash;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -88,6 +89,8 @@ public class SelectionScreen extends FragmentActivity implements OnMapReadyCallb
             Log.i(TAG, "WIDTH SET AS "+dpWidth);
         } catch (Exception e){
         	Log.e(TAG, "Exception", e);
+            FirebaseCrash.logcat(Log.ERROR, TAG, "Issue configuring layout");
+            FirebaseCrash.report(e);
         }
         
         //GET DB DATA
@@ -97,6 +100,8 @@ public class SelectionScreen extends FragmentActivity implements OnMapReadyCallb
 			db_continents = db_helper.getContinents();
         } catch (Exception e) {
 			Log.e(TAG, "Exception", e);
+            FirebaseCrash.logcat(Log.ERROR, TAG, "Issue rading DB");
+            FirebaseCrash.report(e);
 		}
         
         //ACCEPT BUTTON
@@ -112,6 +117,8 @@ public class SelectionScreen extends FragmentActivity implements OnMapReadyCallb
 	        });
         } catch (Exception e) {
 			Log.e(TAG, "Exception", e);
+            FirebaseCrash.logcat(Log.ERROR, TAG, "Issue on button_accept");
+            FirebaseCrash.report(e);
 		}
         
         try{
@@ -269,6 +276,8 @@ public class SelectionScreen extends FragmentActivity implements OnMapReadyCallb
 	                    .position(place));
 	        } catch (Exception e) {
 				Log.e(TAG, "Exception", e);
+                FirebaseCrash.logcat(Log.ERROR, TAG, "Issue locating address on map");
+                FirebaseCrash.report(e);
 			}
 		}
 	}
@@ -287,6 +296,8 @@ public class SelectionScreen extends FragmentActivity implements OnMapReadyCallb
             City = new LatLng(latitude, longitude);
 		} catch (Exception e) {
 			Log.e(TAG, "Exception", e);
+            FirebaseCrash.logcat(Log.ERROR, TAG, "Issue getting location address");
+            FirebaseCrash.report(e);
 		}
 		return City;
 	}
