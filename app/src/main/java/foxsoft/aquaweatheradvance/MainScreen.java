@@ -26,7 +26,7 @@ import foxsoft.aquaweatheradvance.custom.DataBaseHelper;
 import foxsoft.aquaweatheradvance.parser.PuertosSaxParser;
 import foxsoft.aquaweatheradvance.custom.Station;
 
-public class ObtenerDatos extends Activity {
+public class MainScreen extends Activity {
 
 	private ArrayList<TextView> arrayT1WindSpeed;
 	private ArrayList<ImageView> arrayT1WindDirection;

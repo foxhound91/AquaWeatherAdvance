@@ -8,7 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.ProgressBar;
 
-public class Presentacion extends Activity {
+public class PresentationScreen extends Activity {
 	
 	private ProgressBar progressBar;
 	
@@ -49,10 +49,10 @@ public class Presentacion extends Activity {
             return null;
         }
         
-        /** WHEN THE PROGRESS BAR GETS FULL CALLS THE ObtenerDatos CLASS */
+        /** WHEN THE PROGRESS BAR GETS FULL CALLS THE MainScreen CLASS */
     	@Override
     	protected void onPostExecute(Void result) {
-    		mContext.startActivity(new Intent(mContext, ObtenerDatos.class));
+    		mContext.startActivity(new Intent(mContext, MainScreen.class));
     		finish();
     	}
         
