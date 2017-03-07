@@ -18,7 +18,6 @@ import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 
-import java.io.FileNotFoundException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -46,13 +45,9 @@ public class MainScreen extends Activity {
 
 	private ProgressDialog waitingDialogue;
 
-	private AdView adView;
-
 	private AsyncTaskCargaDatos ATCargaDatos;
 
 	private DecimalFormat dfT, dfP;
-
-	private Button button_loadStation;
 
 	private Context mContext;
 
@@ -161,7 +156,7 @@ public class MainScreen extends Activity {
 		stationName = (TextView)findViewById(R.id.TV_STATION_NAME);
 
 		//CONFIG BANNER
-        adView = (AdView)findViewById(R.id.adView);
+		AdView adView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder()
         	.addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
         	.addTestDevice("1F1CEBDC284CA66C3E7154C4E146F6D3")
@@ -174,7 +169,7 @@ public class MainScreen extends Activity {
 
         //CONFIG BUTTON
         try{
-	        button_loadStation = (Button) findViewById(R.id.button1) ;
+			Button button_loadStation = (Button) findViewById(R.id.button1);
 	        button_loadStation.setOnClickListener(new View.OnClickListener() {
 	            public void onClick(View v) {
 	            	Intent bIntent;
@@ -196,8 +191,6 @@ public class MainScreen extends Activity {
 			//db_helper.close();
 		} catch (SQLException e) {
 			Log.e(TAG, e.getMessage());
-		} catch (FileNotFoundException e) {
-			Log.w(TAG, "DB file not found");
 		} catch (Exception e) {
 			Log.e(TAG, "Generic Exception", e);
 		}

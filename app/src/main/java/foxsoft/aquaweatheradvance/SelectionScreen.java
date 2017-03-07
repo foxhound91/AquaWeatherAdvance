@@ -95,10 +95,7 @@ public class SelectionScreen extends FragmentActivity implements OnMapReadyCallb
         try {
 			db_helper.openDataBase();
 			db_continents = db_helper.getContinents();
-        } catch (IOException e) {
-			Log.e(TAG, e.getMessage());
-			e.printStackTrace();
-		} catch (Exception e) {
+        } catch (Exception e) {
 			Log.e(TAG, "Exception", e);
 		}
         

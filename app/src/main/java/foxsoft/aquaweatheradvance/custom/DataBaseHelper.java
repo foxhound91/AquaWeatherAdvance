@@ -139,7 +139,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     	return countries;
     }
     
-    public ArrayList<Continent> getContinents() throws Exception{
+    public ArrayList<Continent> getContinents() {
     	ArrayList<Continent> continents = new ArrayList<>();
     	Continent continent;
     	String selectQuery = "SELECT CONTINENT_ID, ID, NAME FROM CONTINENTS";
@@ -160,7 +160,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     	return continents;
     }
     
-    public Station getLastStation() throws Exception{
+    public Station getLastStation() {
     	Station station = null;
     	String selectQuery = "SELECT ID, NAME, REGION_ID FROM LAST_STATION";
     	try{
