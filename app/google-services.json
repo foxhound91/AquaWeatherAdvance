@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "100724901274",
+    "firebase_url": "https://api-project-100724901274.firebaseio.com",
+    "project_id": "api-project-100724901274",
+    "storage_bucket": "api-project-100724901274.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:100724901274:android:9575a0e667a9c182",
+        "android_client_info": {
+          "package_name": "foxsoft.aquaweatheradvance"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "100724901274-vgnavle6mqbns4v5upu5sb5llrgajq0q.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "100724901274-itqaokri4u1dp2t1eg1ondus8ftosc3k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD670CNoqp9A8XzFoHa4gXAKlOoi35U9ag"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-47836990-1"
+          }
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
